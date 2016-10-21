@@ -1,3 +1,12 @@
 html, body {
     margin: 0;
+    padding: 0;
+}
+
+.name-box__container {
+    display: block;
+    width: 100%;
+}
+
+.name-box {
 }
