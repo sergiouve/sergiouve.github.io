@@ -6,6 +6,7 @@ $(document).ready(function() {
 
     var $main = $('main');
     var $nameElement = $main.find('.js-name-box');
+    var spiceInterval;
 
     var getRandomHexColor = function() {
         var letters = '0123456789ABCDEF';
@@ -31,16 +32,21 @@ $(document).ready(function() {
         $nameElement.css('color', getRandomHexColor());
     }
 
-    var triggerSpiceNameUp = function() {
+    var toggleSpiceNameUp = function() {
         $nameElement.html(surrondCharsWithSpan($nameElement));
+        $nameElement.toggleClass('js-spice-active');
 
-        window.setInterval(function() {
-            spiceNameUp();
-        }, 50);
+        if ($nameElement.hasClass('js-spice-active')) {
+            spiceInterval = setInterval(function() {
+                spiceNameUp();
+            }, 50);
+        } else {
+            clearInterval(spiceInterval);
+        }
     }
 
     $nameElement.on('click', function() {
-        triggerSpiceNameUp();
+        toggleSpiceNameUp();
     });
 
 });
