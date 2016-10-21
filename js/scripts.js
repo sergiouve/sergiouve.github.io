@@ -22,7 +22,7 @@ $(document).ready(function() {
         var elementChars = $element.text();
 
         for (var i = 0, length = elementChars.length; i < length; i++) {
-            elementChars[i] = elementChars.replaceAt(i, '<span class="char">' + elementChars[i] + '</span>');
+            elementChars[i] = elementChars.replaceAt(i, '<span>' + elementChars[i] + '</span>');
         }
         return elementChars;
     }
