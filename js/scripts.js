@@ -31,10 +31,17 @@ $(document).ready(function() {
         $nameElement.css('color', getRandomHexColor());
     }
 
-    $nameElement.html(surrondCharsWithSpan($nameElement));
+    var triggerSpiceNameUp = function() {
+        $nameElement.html(surrondCharsWithSpan($nameElement));
 
-    window.setInterval(function() {
-        spiceNameUp();
-    }, 50);
+        window.setInterval(function() {
+            spiceNameUp();
+        }, 50);
+    }
+
+    $nameElement.on('click', function() {
+        triggerSpiceNameUp();
+    });
+
 });
 
