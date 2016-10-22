@@ -87,10 +87,16 @@ $(document).ready(function() {
         }
     }
 
+    var focusTerminal = function() {
+        var $terminal = $main.find('.terminal-input:last-child');
+        $terminal.focus();
+    }
+
     $nameElement.on('click', function() {
         toggleSpiceNameUp();
     });
 
     initClock();
+    focusTerminal();
 
 });
