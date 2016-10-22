@@ -1,12 +1,11 @@
-
 var initTerminalListener = function() {
-        var $terminal = $main.find('.terminal-input:last-child');
+    var $terminal = $main.find('.terminal-input:last-child');
 
-        $terminal.on('keyup', function(e) {
-            var pressed_key = e.keyCode || e.which;
-            terminalHandleInput($terminal.val(), pressed_key);
-        });
-    }
+    $terminal.on('keyup', function(e) {
+        var pressed_key = e.keyCode || e.which;
+        terminalHandleInput($terminal.val(), pressed_key);
+    });
+}
 
 var focusTerminal = function() {
     var $terminal = $main.find('.terminal-input:last-child');
@@ -52,5 +51,5 @@ var updateCommandHistory = function(input) {
 }
 
 var askYodo = function() {
-        return 1;
-    }
+    return 1;
+}

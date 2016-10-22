@@ -1,0 +1,4 @@
+ {
+    "ls": "listDirectory",
+    "cd": "changeDirectory"
+}

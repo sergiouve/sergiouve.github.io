@@ -7,6 +7,7 @@ $(document).ready(function() {
     var $main = $('main');
     var $nameElement = $main.find('.js-name-box');
     var spiceInterval = null;
+    var commands_list_path = '/lib/commands.json';
 
     var initClock = function() {
         var $date = $main.find('.js-clock');
@@ -103,7 +104,7 @@ $(document).ready(function() {
 
     var terminalHandleInput = function(input, pressed_key) {
         if (pressed_key == '13') {
-            executeTerminalCommand(input);
+            checkCommand(input, executeTerminalCommand);
             generateNewTerminalLine();
             updateCommandHistory(input);
             return;
@@ -113,9 +114,23 @@ $(document).ready(function() {
         }
     }
 
-    var executeTerminalCommand = function(input) {
-        askYodo();
+    var executeTerminalCommand = function(input, commandsList) {
+        var is_a_yodo_command = askYodo();
+
+        if (is_a_yodo_command) {
+            return;
+        }
+
+        console.log(commandsList);
+
         return 1;
+    }
+
+    function checkCommand(input, callback) {
+        $.getJSON(commands_list_path, function(data) {
+            var commandsList = $.parseJSON(data);
+            callback(input, commandsList);
+        });
     }
 
     var generateNewTerminalLine = function() {
@@ -140,7 +155,7 @@ $(document).ready(function() {
     }
 
     var askYodo = function() {
-        return 1;
+        return 0;
     }
 
     $nameElement.on('click', function() {
