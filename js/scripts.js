@@ -9,11 +9,40 @@ $(document).ready(function() {
     var spiceInterval = null;
 
     var initClock = function() {
-        var date = new Date();
-        var current_date = date.toLocaleDateString();
         var $date = $main.find('.js-clock');
 
-        $date.html(current_date);
+        setInterval(function() {
+            var date = getCurrentDate();
+            var time = getCurrentTime();
+
+            $date.html(date + ' - ' + time);
+        }, 1000);
+    }
+
+    var getCurrentDate = function() {
+        var date = new Date();
+        var current_date = date.toLocaleDateString();
+
+        return current_date;
+    }
+
+    var getCurrentTime = function() {
+        var time = new Date();
+        var current_hour = time.getHours();
+        var current_minute = time.getMinutes();
+        var current_second = time.getSeconds();
+
+        current_hour = formatTimeValue(current_hour);
+        current_minute = formatTimeValue(current_minute);
+        current_second = formatTimeValue(current_second);
+
+        var formatted_time = current_hour + ':' + current_minute + ':' + current_second;
+
+        return formatted_time;
+    }
+
+    var formatTimeValue = function(value) {
+        return value > 9 ? value : '0' + value;
     }
 
     var getRandomHexColor = function() {
@@ -65,4 +94,3 @@ $(document).ready(function() {
     initClock();
 
 });
-
