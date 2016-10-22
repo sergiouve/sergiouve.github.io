@@ -6,7 +6,15 @@ $(document).ready(function() {
 
     var $main = $('main');
     var $nameElement = $main.find('.js-name-box');
-    var spiceInterval;
+    var spiceInterval = null;
+
+    var initClock = function() {
+        var date = new Date();
+        var current_date = date.toLocaleDateString();
+        var $date = $main.find('.js-clock');
+
+        $date.html(current_date);
+    }
 
     var getRandomHexColor = function() {
         var letters = '0123456789ABCDEF';
@@ -28,8 +36,13 @@ $(document).ready(function() {
         return elementChars;
     }
 
+    var getRangedRandomNumber = function(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+
     var spiceNameUp = function() {
         $nameElement.css('color', getRandomHexColor());
+        // $nameElement.css('font-size', getRangedRandomNumber(10, 12));
     }
 
     var toggleSpiceNameUp = function() {
@@ -48,6 +61,8 @@ $(document).ready(function() {
     $nameElement.on('click', function() {
         toggleSpiceNameUp();
     });
+
+    initClock();
 
 });
 
