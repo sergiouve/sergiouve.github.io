@@ -20,6 +20,12 @@ $(document).ready(function() {
         }, 1000);
     }
 
+    var initNameElementListener = function() {
+        $nameElement.on('click', function() {
+            toggleSpiceNameUp();
+        });
+    }
+
     var getCurrentDate = function() {
         var date = new Date();
         var current_date = date.toLocaleDateString();
@@ -95,16 +101,19 @@ $(document).ready(function() {
 
     var initTerminalListener = function() {
         var $terminal = $main.find('.terminal-input:last-child');
+        $terminal.off();
 
         $terminal.on('keyup', function(e) {
             var pressed_key = e.keyCode || e.which;
-            terminalHandleInput($terminal.val(), pressed_key);
+            var input = $terminal.val();
+
+            terminalHandleInput(input, pressed_key);
         });
     }
 
     var terminalHandleInput = function(input, pressed_key) {
         if (pressed_key == '13') {
-            checkCommand(input, executeTerminalCommand);
+            handleCommandInput(input, executeTerminalCommand);
             generateNewTerminalLine();
             updateCommandHistory(input);
             return;
@@ -121,14 +130,18 @@ $(document).ready(function() {
             return;
         }
 
-        console.log(commandsList);
+        if (commandsList[input]) {
+            console.log('ok');
+        } else {
+            console.log('ko');
+        }
 
         return 1;
     }
 
-    function checkCommand(input, callback) {
+    var handleCommandInput = function (input, callback) {
         $.getJSON(commands_list_path, function(data) {
-            var commandsList = $.parseJSON(data);
+            var commandsList = (data);
             callback(input, commandsList);
         });
     }
@@ -143,9 +156,9 @@ $(document).ready(function() {
         var $terminalBox = $main.find('.js-terminal-box:last-child');
         var $terminalInput = $terminalBox.find('input');
 
-        initTerminalListener();
         $terminalInput.val('');
         $terminalInput.focus();
+        initTerminalListener();
 
         return 1;
     }
@@ -158,10 +171,7 @@ $(document).ready(function() {
         return 0;
     }
 
-    $nameElement.on('click', function() {
-        toggleSpiceNameUp();
-    });
-
+    initNameElementListener();
     initClock();
     initTerminalListener();
     focusTerminal();
