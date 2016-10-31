@@ -100,7 +100,9 @@ $(document).ready(function() {
     }
 
     var initTerminalListener = function() {
-        var $terminal = $main.find('.terminal-input:last-child');
+        var $terminalBox = $main.find('.js-terminal-box:last-child');
+        var $terminal = $terminalBox.find('input');
+
         $terminal.off();
 
         $terminal.on('keyup', function(e) {
@@ -132,14 +134,16 @@ $(document).ready(function() {
 
         if (commandsList[input]) {
             console.log('ok');
+            executeCommandByName(input, window);
         } else {
-            console.log('ko');
+            if (input != '')
+                printError('notFound');
         }
 
         return 1;
     }
 
-    var handleCommandInput = function (input, callback) {
+    var handleCommandInput = function(input, callback) {
         $.getJSON(commands_list_path, function(data) {
             var commandsList = (data);
             callback(input, commandsList);
@@ -156,7 +160,7 @@ $(document).ready(function() {
         var $terminalBox = $main.find('.js-terminal-box:last-child');
         var $terminalInput = $terminalBox.find('input');
 
-        $terminalInput.val('');
+        $terminalInput.val(null);
         $terminalInput.focus();
         initTerminalListener();
 
@@ -169,6 +173,28 @@ $(document).ready(function() {
 
     var askYodo = function() {
         return 0;
+    }
+
+    var printError = function(code) {
+        switch (code) {
+
+            case 'notFound':
+                console.log('command not found');
+                break;
+
+        }
+    }
+
+    var executeCommandByName = function(commandName, context /*, args */ ) {
+        // var args = [].slice.call(arguments).splice(2);
+        // var namespaces = commandName.split(".");
+        // var func = namespaces.pop();
+        //
+        // for (var i = 0; i < namespaces.length; i++) {
+        //     context = context[namespaces[i]];
+        // }
+
+        return window[commandName]();
     }
 
     initNameElementListener();
