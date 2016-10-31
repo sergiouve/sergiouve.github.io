@@ -7,3 +7,5 @@ var commands = {
         console.log('cd');
     }
 };
+
+module.exports = commands;

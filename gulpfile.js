@@ -1,31 +1,27 @@
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var uglify = require('gulp-uglify');
-var browserify = require('browserify');
+var gulp        = require('gulp');
+var gutil       = require('gulp-util');
+var uglify      = require('gulp-uglify');
+var browserify  = require('browserify');
+var source      = require('vinyl-source-stream');
 
 //uglify: minificacion js
 gulp.task('uglify', function() {
-
-    gulp.src('js/app.source.js');
-    .pipe(uglify())
-    .pipe(gulp.dest('js/app.js'));
+    // gulp.src('js/app.source.js')
+    // .pipe(uglify())
+    // .pipe(gulp.dest('js/'));
 });
 
 gulp.task('browserify', function() {
-
-    return browserify('./includes/templates/js-source/assets.js')
+    return browserify('js/app.source.js')
         .bundle()
-        .pipe(source('assets.min.js'))
-        .pipe(buffer())
-        .pipe(uglify())
-        .pipe(gulp.dest('./includes/templates/assets/js/'));
+        .pipe(source('app.js'))
+        .pipe(gulp.dest('js/'));
 });
 
-//whatch
+// watch
 gulp.task('watch', function() {
-    livereload.listen();
-    gulp.watch('includes/templates/js-source/**/*.js', ['browserify-main', 'uglify']).on('change', livereload.changed);
+    gulp.watch('js/*.js', ['browserify']);
 });
 
-//default
-gulp.task('default', ['browserify-assets', 'assets-css', 'browserify-main', 'uglify', 'sass', 'watch']);
+// default
+gulp.task('default', ['browserify', 'watch']);
