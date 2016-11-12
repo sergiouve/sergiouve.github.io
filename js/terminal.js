@@ -51,7 +51,7 @@ var terminal = {
             terminal.printOutput(output);
         } else {
             if (input != '')
-                printError('notFound');
+                terminal.printError('not_found');
         }
 
         terminal.generateNewTerminalLine();
@@ -98,8 +98,8 @@ var terminal = {
     printError: function(code) {
         switch (code) {
 
-            case 'notFound':
-                console.log('command not found');
+            case 'not_found':
+                this.printOutput('command not found');
                 break;
 
         }
