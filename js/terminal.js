@@ -8,8 +8,6 @@ var terminal = {
     terminalHandleInput: function(input, pressed_key) {
         if (pressed_key == '13') {
             this.handleCommandInput(input, this.executeTerminalCommand);
-            this.generateNewTerminalLine();
-            this.updateCommandHistory(input);
             return;
         } else {
             // TODO
@@ -30,7 +28,7 @@ var terminal = {
 
             terminal.terminalHandleInput(input, pressed_key);
         });
-        console.log('done');
+        console.log('done.');
         this.focusTerminal();
     },
 
@@ -38,7 +36,7 @@ var terminal = {
         console.log('focusing terminal...');
         var $terminal = this.$app.find('.terminal-input:last-child');
         $terminal.focus();
-        console.log('done');
+        console.log('done.');
     },
 
     executeTerminalCommand: function(input, commandsList) {
@@ -49,14 +47,15 @@ var terminal = {
         }
 
         if (commandsList[input]) {
-            console.log('ok');
-            terminal.executeCommandByName(input, window);
+            var output = terminal.executeCommandByName(commandsList[input]);
+            terminal.printOutput(output);
         } else {
             if (input != '')
                 printError('notFound');
         }
 
-        return 1;
+        terminal.generateNewTerminalLine();
+        terminal.updateCommandHistory(input);
     },
 
     handleCommandInput: function(input, callback) {
@@ -70,7 +69,12 @@ var terminal = {
         var $terminalBox = this.$app.find('.js-terminal-box:last-child');
         var $terminalInput = $terminalBox.find('input');
 
-        $terminalBox.clone().insertAfter($terminalBox);
+        var $newLine = $terminalBox.clone();
+        var $oldOutput = $newLine.find('.js-output-text');
+        $oldOutput.remove();
+
+        $newLine.insertAfter($terminalBox);
+
         $terminalInput.prop('disabled', true);
 
         var $terminalBox = this.$app.find('.js-terminal-box:last-child');
@@ -101,8 +105,13 @@ var terminal = {
         }
     },
 
-    executeCommandByName: function(commandName, context /*, args */ ) {
-        console.log(commandName);
+    printOutput: function(output) {
+        var $terminalBox = this.$app.find('.js-terminal-box:last-child');
+        $terminalBox.append('<div class="output js-output-text">' + output + '</div>');
+    },
+
+    executeCommandByName: function(input) {
+        return commands[input]();
     }
 }
 

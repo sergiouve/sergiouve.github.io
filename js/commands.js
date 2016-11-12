@@ -1,10 +1,11 @@
 var commands = {
     listDirectory: function() {
-        console.log('ls');
+        console.log('executing list directory');
+        return 'about mock_directory';
     },
 
     changeDirectory: function() {
-        console.log('cd');
+        console.log('executing change directory');
     }
 };
 

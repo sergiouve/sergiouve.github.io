@@ -57,6 +57,12 @@ header {
     overflow: visible;
 }
 
+.output {
+    color: white;
+    width: 100%;
+    float: left;
+}
+
 hr {
     margin: 0;
     border-width: 1px 0px 0px 0px;
