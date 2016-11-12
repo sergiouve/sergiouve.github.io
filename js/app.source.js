@@ -1,3 +1,5 @@
 var terminal = require('./terminal.js');
 
-terminal.logCommands();
+$(document).ready(function() {
+    terminal.initTerminalListener();
+});

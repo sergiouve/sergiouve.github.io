@@ -7,7 +7,6 @@ $(document).ready(function() {
     var $main = $('main');
     var $nameElement = $main.find('.js-name-box');
     var spiceInterval = null;
-    var commands_list_path = '/lib/commands.json';
 
     var initClock = function() {
         var $date = $main.find('.js-clock');
@@ -94,112 +93,9 @@ $(document).ready(function() {
         }
     }
 
-    var focusTerminal = function() {
-        var $terminal = $main.find('.terminal-input:last-child');
-        $terminal.focus();
-    }
-
-    var initTerminalListener = function() {
-        var $terminalBox = $main.find('.js-terminal-box:last-child');
-        var $terminal = $terminalBox.find('input');
-
-        $terminal.off();
-
-        $terminal.on('keyup', function(e) {
-            var pressed_key = e.keyCode || e.which;
-            var input = $terminal.val();
-
-            terminalHandleInput(input, pressed_key);
-        });
-    }
-
-    var terminalHandleInput = function(input, pressed_key) {
-        if (pressed_key == '13') {
-            handleCommandInput(input, executeTerminalCommand);
-            generateNewTerminalLine();
-            updateCommandHistory(input);
-            return;
-        } else {
-            // TODO
-            return;
-        }
-    }
-
-    var executeTerminalCommand = function(input, commandsList) {
-        var is_a_yodo_command = askYodo();
-
-        if (is_a_yodo_command) {
-            return;
-        }
-
-        if (commandsList[input]) {
-            console.log('ok');
-            executeCommandByName(input, window);
-        } else {
-            if (input != '')
-                printError('notFound');
-        }
-
-        return 1;
-    }
-
-    var handleCommandInput = function(input, callback) {
-        $.getJSON(commands_list_path, function(data) {
-            var commandsList = (data);
-            callback(input, commandsList);
-        });
-    }
-
-    var generateNewTerminalLine = function() {
-        var $terminalBox = $main.find('.js-terminal-box:last-child');
-        var $terminalInput = $terminalBox.find('input');
-
-        $terminalBox.clone().insertAfter($terminalBox);
-        $terminalInput.prop('disabled', true);
-
-        var $terminalBox = $main.find('.js-terminal-box:last-child');
-        var $terminalInput = $terminalBox.find('input');
-
-        $terminalInput.val(null);
-        $terminalInput.focus();
-        initTerminalListener();
-
-        return 1;
-    }
-
-    var updateCommandHistory = function(input) {
-        return 1;
-    }
-
-    var askYodo = function() {
-        return 0;
-    }
-
-    var printError = function(code) {
-        switch (code) {
-
-            case 'notFound':
-                console.log('command not found');
-                break;
-
-        }
-    }
-
-    var executeCommandByName = function(commandName, context /*, args */ ) {
-        // var args = [].slice.call(arguments).splice(2);
-        // var namespaces = commandName.split(".");
-        // var func = namespaces.pop();
-        //
-        // for (var i = 0; i < namespaces.length; i++) {
-        //     context = context[namespaces[i]];
-        // }
-
-        return window[commandName]();
-    }
-
     initNameElementListener();
     initClock();
-    initTerminalListener();
-    focusTerminal();
+    // initTerminalListener();
+    // focusTerminal();
 
 });
