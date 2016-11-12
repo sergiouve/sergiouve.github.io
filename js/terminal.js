@@ -7,7 +7,7 @@ var terminal = {
 
     terminalHandleInput: function(input, pressed_key) {
         if (pressed_key == '13') {
-            this.handleCommandInput(input, executeTerminalCommand);
+            this.handleCommandInput(input, this.executeTerminalCommand);
             this.generateNewTerminalLine();
             this.updateCommandHistory(input);
             return;
@@ -28,7 +28,7 @@ var terminal = {
             var pressed_key = e.keyCode || e.which;
             var input = $terminal.val();
 
-            this.terminalHandleInput(input, pressed_key);
+            terminal.terminalHandleInput(input, pressed_key);
         });
         console.log('done');
         this.focusTerminal();
@@ -42,7 +42,7 @@ var terminal = {
     },
 
     executeTerminalCommand: function(input, commandsList) {
-        var is_a_yodo_command = askYodo();
+        var is_a_yodo_command = terminal.askYodo();
 
         if (is_a_yodo_command) {
             return;
@@ -50,7 +50,7 @@ var terminal = {
 
         if (commandsList[input]) {
             console.log('ok');
-            executeCommandByName(input, window);
+            terminal.executeCommandByName(input, window);
         } else {
             if (input != '')
                 printError('notFound');
@@ -60,7 +60,7 @@ var terminal = {
     },
 
     handleCommandInput: function(input, callback) {
-        $.getJSON(commands_list_path, function(data) {
+        $.getJSON(this.commands_list_path, function(data) {
             var commandsList = (data);
             callback(input, commandsList);
         });
@@ -78,7 +78,7 @@ var terminal = {
 
         $terminalInput.val(null);
         $terminalInput.focus();
-        initTerminalListener();
+        this.initTerminalListener();
 
         return 1;
     },
@@ -102,15 +102,7 @@ var terminal = {
     },
 
     executeCommandByName: function(commandName, context /*, args */ ) {
-        // var args = [].slice.call(arguments).splice(2);
-        // var namespaces = commandName.split(".");
-        // var func = namespaces.pop();
-        //
-        // for (var i = 0; i < namespaces.length; i++) {
-        //     context = context[namespaces[i]];
-        // }
-
-        return window[commandName]();
+        console.log(commandName);
     }
 }
 

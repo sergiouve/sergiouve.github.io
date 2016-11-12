@@ -95,7 +95,5 @@ $(document).ready(function() {
 
     initNameElementListener();
     initClock();
-    // initTerminalListener();
-    // focusTerminal();
 
 });
