@@ -20,6 +20,7 @@ var commands = {
     changeDirectory: function(parameters) {
         var directory = parameters[0];
         this.currentDir = this.currentDir[directory];
+        return '';
     },
 
     printWorkingDirectory: function() {
