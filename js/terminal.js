@@ -41,13 +41,16 @@ var terminal = {
 
     executeTerminalCommand: function(input, commandsList) {
         var is_a_yodo_command = terminal.askYodo();
+        var parsedInput = input.split(' ');
+        var command = parsedInput[0];
+        var parametersList = parsedInput.splice(1, parsedInput.length - 1);
 
         if (is_a_yodo_command) {
             return;
         }
 
-        if (commandsList[input]) {
-            var output = terminal.executeCommandByName(commandsList[input]);
+        if (commandsList[command]) {
+            var output = terminal.executeCommandByName(commandsList[command], parametersList);
             terminal.printOutput(output);
         } else {
             if (input != '')
@@ -88,10 +91,12 @@ var terminal = {
     },
 
     updateCommandHistory: function(input) {
+        // TODO
         return 1;
     },
 
     askYodo: function() {
+        // TODO
         return 0;
     },
 
@@ -110,8 +115,8 @@ var terminal = {
         $terminalBox.append('<div class="output js-output-text">' + output + '</div>');
     },
 
-    executeCommandByName: function(input) {
-        return commands[input]();
+    executeCommandByName: function(command, parameters) {
+        return commands[command](parameters);
     }
 }
 

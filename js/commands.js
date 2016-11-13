@@ -1,11 +1,29 @@
+var fileTree = require('./../lib/tree.json');
+
 var commands = {
-    listDirectory: function() {
-        console.log('executing list directory');
-        return 'about mock_directory';
+
+    currentDir: fileTree['/'],
+
+    listDirectory: function(parameters) {
+
+        if (parameters.length > 0) {
+            var directory = Object.keys(this.currentDir[parameters[0]]);
+        } else {
+            var directory = Object.keys(this.currentDir);
+        }
+
+        directory = directory.toString();
+        directory = directory.replace(',', '  ');
+        return directory;
     },
 
-    changeDirectory: function() {
-        console.log('executing change directory');
+    changeDirectory: function(parameters) {
+        var directory = parameters[0];
+        this.currentDir = this.currentDir[directory];
+    },
+
+    printWorkingDirectory: function() {
+
     }
 };
 

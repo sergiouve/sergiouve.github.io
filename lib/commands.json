@@ -1,4 +1,5 @@
  {
     "ls": "listDirectory",
-    "cd": "changeDirectory"
+    "cd": "changeDirectory",
+    "pwd": "printWorkingDirectory"
 }
