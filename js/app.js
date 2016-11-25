@@ -22,17 +22,31 @@ var commands = {
 
         directory = directory.toString();
         directory = directory.replace(',', '  ');
+
         return directory;
     },
 
     changeDirectory: function(parameters) {
         var directory = parameters[0];
+        console.log(typeof directory);
+
+        if (typeof directory == 'object') {
+            return 'not a folder';
+        }
+
         this.currentDir = this.currentDir[directory];
         return '';
     },
 
     printWorkingDirectory: function() {
 
+    },
+
+    help: function() {
+        var output = 'commands available:<br>';
+        output += '';
+
+        return output;
     }
 };
 
@@ -176,7 +190,7 @@ module.exports={
 
                 "sergiouve.github.io": {
                     "description": "this website",
-                    "url": ""
+                    "url": "sergiouve.github.io"
                 },
 
                 "yoKnight": {
