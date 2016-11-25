@@ -63,6 +63,7 @@ main {
 .terminal--section {
     background-color: $dark-theme-terminal-background;
     position: fixed;
+    overflow-y: hidden;
     left: calc(#{$lateral-pano-width} + 70px);
     float: left;
     width: calc(100vh - #{$lateral-pano-width});
