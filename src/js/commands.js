@@ -2,7 +2,7 @@ var fileTree = require('./lib/tree.json');
 
 var commands = {
 
-    currentDir: fileTree['/'],
+    currentDir: fileTree['/']['home'],
 
     listDirectory: function(parameters) {
 
@@ -19,14 +19,20 @@ var commands = {
     },
 
     changeDirectory: function(parameters) {
-        var directory = parameters[0];
-        console.log(typeof directory);
+        var directoryPath = parameters[0].split('/');
+        var directory = directoryPath[0];
 
-        if (typeof directory == 'object') {
-            return 'not a folder';
+        if (typeof this.currentDir[directory] != 'object') {
+            return directory + ' is not a folder';
         }
 
         this.currentDir = this.currentDir[directory];
+        directoryPath.splice(0, 1);
+
+        if (directoryPath.length > 0) {
+            this.changeDirectory([directoryPath.join('/')]);
+        }
+
         return '';
     },
 
