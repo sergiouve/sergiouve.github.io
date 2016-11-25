@@ -55,6 +55,11 @@ main {
     }
 }
 
+.pano--lateral__bottom-list {
+    position: absolute;
+    bottom: 0px;
+}
+
 .terminal--section {
     background-color: $dark-theme-terminal-background;
     position: fixed;
