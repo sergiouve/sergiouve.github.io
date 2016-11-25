@@ -9,30 +9,36 @@
         <link href="./assets/css/main.css" type="text/css" rel="stylesheet" media="screen" />
     </head>
 
-    <body>
+    <body class="dark-theme">
+
         <main>
-            <header>
-                <div class="clock js-clock"></div>
-                <div class="name-box__container">
-                    <pre class="name-box js-name-box" title="Dance off!">
-   ________  _________ _(_)___  __  ___   _____
-  / ___/ _ \/ ___/ __ `/ / __ \/ / / / | / / _ \
- (__  )  __/ /  / /_/ / / /_/ / /_/ /| |/ /  __/
-/____/\___/_/   \__, /_/\____/\__,_/ |___/\___/
-               /____/
-                        </pre>
+
+            <aside class="pano--lateral">
+                <ul class="pano--lateral__top-list">
+                    <li><span>sergiouve<strong>|</strong></span></li>
+                    <li><span>Unix like terminal emulator</span></li>
+                </ul>
+                <ul class="pano--lateral__bottom-list">
+                    <li><a href="#" class="js-help">Help</a></li>
+                    <li><a href="https://github.com/sergiouve" target="_blank">My Github</a></li>
+                    <li><a href="https://github.com/sergiouve/sergiouve.github.io" target="_blank">Project repo</a></li>
+                </ul>
+            </aside>
+
+            <section class="terminal--section">
+                <div id="terminal" class="terminal__container">
+                    <div id="t0" class="terminal-box js-terminal-box">
+                        <input type="textarea" class="terminal-input" />
+                    </div>
                 </div>
-            </header>
-            <hr>
-            <div id="terminal" class="terminal__container">
-                <div id="t0" class="terminal-box js-terminal-box">
-                    <input type="textarea" class="terminal-input" />
-                </div>
-            </div>
+            </section>
+
         </main>
+
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="./assets/js/scripts.js" type="text/javascript"></script>
         <script src="./assets/js/app.js" type="text/javascript"></script>
+
     </body>
 
 </html>

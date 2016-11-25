@@ -3,9 +3,22 @@
 
 $dark-theme-main-color: #000;
 $dark-theme-secondary-color: #00FF00;
+$dark-theme-tertiary-color: #FFF;
+$dark-theme-pano-color: #111;
+$dark-theme-terminal-background: #222;
 
 $light-theme-main-color: #FFF;
 $light-theme-secondary-color: #000;
+
+/* Font variables */
+
+$main-font-size: 13px;
+$main-font-family: 'Source Code Pro';
+$terminal-font-size: 12px;
+
+/* Grid variables */
+
+$lateral-pano-width: 240px;
 
 /* Common styles */
 
@@ -13,13 +26,44 @@ html, body {
     margin: 0;
     padding: 0;
     background-color: $dark-theme-main-color;
-    font-family: 'Source Code Pro';
-    font-size: 14px;
+    font-size: $main-font-size;
+    font-family: $main-font-family;
+    color: $dark-theme-secondary-color;
 }
 
-header {
-    color: #00FF00;
+main {
+    position: absolute;
+    padding: 2rem;
+    overflow: hidden;
+}
+
+.pano--lateral {
+    position: fixed;
+    float: left;
+    height: 30vh;
+    width: $lateral-pano-width;
+    background-color: $dark-theme-pano-color;
     padding: 0px 10px;
+    color: $dark-theme-secondary-color;
+
+    a {
+        color: $dark-theme-secondary-color;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+.terminal--section {
+    background-color: $dark-theme-terminal-background;
+    position: fixed;
+    left: calc(#{$lateral-pano-width} + 70px);
+    float: left;
+    width: calc(100vh - #{$lateral-pano-width});
+    height: 95vh;
+    padding-left: 10px;
+    font-size: $terminal-font-size;
 }
 
 .clock {
@@ -28,19 +72,8 @@ header {
     top: 63px;
 }
 
-.name-box__container {
-    display: block;
-    padding-top: 10px;
-    float: right;
-}
-
-.name-box {
-    margin: 0;
-    cursor: pointer;
-}
-
 .terminal__container {
-    padding: 5px 5px 0px 5px;
+    padding: 10px 5px 0px 5px;
 }
 
 .terminal-box {
@@ -64,7 +97,7 @@ header {
     overflow: visible;
     float: left;
     padding-left: 5px;
-    background-color: #000;
+    background-color: transparent;
     color: #00FF00;
     font-size: 14px;
 }
@@ -73,13 +106,4 @@ header {
     color: white;
     width: 100%;
     float: left;
-}
-
-hr {
-    margin: 0;
-    border-width: 1px 0px 0px 0px;
-    border-style: dashed;
-    padding: 0;
-    color: #00FF00;
-    clear: both;
 }
