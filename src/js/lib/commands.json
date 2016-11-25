@@ -2,5 +2,6 @@
     "ls": "listDirectory",
     "cd": "changeDirectory",
     "pwd": "printWorkingDirectory",
+    "cat": "concatenate",
     "help": "help"
 }

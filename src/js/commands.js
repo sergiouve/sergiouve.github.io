@@ -40,6 +40,17 @@ var commands = {
 
     },
 
+    concatenate: function(parameters) {
+        var file = parameters[0];
+        console.log(typeof this.currentDir[file]);
+
+        if (typeof this.currentDir[file] != 'string') {
+            return file + ' is not a file';
+        }
+
+        return this.currentDir[file];
+    },
+
     help: function() {
         var output = 'commands available:<br>';
         output += '';
