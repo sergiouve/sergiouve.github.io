@@ -1,7 +1,18 @@
+
+/* Color variables */
+
+$dark-theme-main-color: #000;
+$dark-theme-secondary-color: #00FF00;
+
+$light-theme-main-color: #FFF;
+$light-theme-secondary-color: #000;
+
+/* Common styles */
+
 html, body {
     margin: 0;
     padding: 0;
-    background-color: #000;
+    background-color: $dark-theme-main-color;
     font-family: 'Source Code Pro';
     font-size: 14px;
 }

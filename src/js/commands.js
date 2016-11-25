@@ -1,4 +1,4 @@
-var fileTree = require('./../lib/tree.json');
+var fileTree = require('./lib/tree.json');
 
 var commands = {
 

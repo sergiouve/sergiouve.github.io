@@ -2,7 +2,7 @@ var commands = require('./commands');
 
 var terminal = {
 
-    commands_list_path: '/lib/commands.json',
+    commands_list_path: './src/js/lib/commands.json',
     $app: $('#terminal'),
 
     terminalHandleInput: function(input, pressed_key) {
