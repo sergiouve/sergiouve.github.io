@@ -1,4 +1,8 @@
 
+/* Meida queries variables */
+
+$md-tablet-query: 880px;
+
 /* Color variables */
 
 $dark-theme-main-color: #000;
@@ -19,6 +23,13 @@ $terminal-font-size: 12px;
 /* Grid variables */
 
 $lateral-pano-width: 240px;
+
+/* Temp font-face */
+
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('../fonts/SourceCodePro-Regular.ttf');
+}
 
 /* Common styles */
 
@@ -61,6 +72,12 @@ body {
             text-decoration: none;
         }
     }
+
+    @media (max-width: $md-tablet-query) {
+        width: 100vh;
+        margin-bottom: 25px;
+        padding-right: 0px;
+    }
 }
 
 .pano--lateral__bottom-list {
@@ -71,13 +88,19 @@ body {
 .terminal--section {
     background-color: $dark-theme-terminal-background;
     position: relative;
-    overflow-y: hidden;
+    overflow: hidden;
     float: left;
     margin-left: 50px;
     width: 100vh;
     height: 85vh;
     padding-left: 10px;
     font-size: $terminal-font-size;
+
+    @media (max-width: $md-tablet-query) {
+        width: 100vh;
+        margin-left: 0px;
+    }
+
 }
 
 .clock {
@@ -120,4 +143,5 @@ body {
     color: white;
     width: 100%;
     float: left;
+    padding: 0px 8px;
 }

@@ -19,9 +19,8 @@ var commands = {
         } else {
             var directory = Object.keys(this.currentDir);
         }
-
         directory = directory.toString();
-        directory = directory.replace(',', '  ');
+        directory = directory.replace(/,/g, '&nbsp;&nbsp;');
 
         return directory;
     },
