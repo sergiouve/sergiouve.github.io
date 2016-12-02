@@ -76,7 +76,7 @@ module.exports={
             "projects": {
 
                 "yodo": {
-                    "description": "yodo",
+                    "description": "Well yodo is this awesome thing you know, one day I'll tell y'all about it. Not now though...",
                     "url": ""
                 },
 

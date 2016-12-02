@@ -31,16 +31,24 @@ html, body {
     color: $dark-theme-secondary-color;
 }
 
-main {
+body {
+    height: 100%;
+    width: 100%;
+}
+
+#page {
     position: absolute;
-    padding: 2rem;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 40px;
     overflow: hidden;
 }
 
 .pano--lateral {
-    position: fixed;
+    position: relative;
     float: left;
-    height: 30vh;
+    height: 25vh;
     width: $lateral-pano-width;
     background-color: $dark-theme-pano-color;
     padding: 0px 10px;
@@ -62,12 +70,12 @@ main {
 
 .terminal--section {
     background-color: $dark-theme-terminal-background;
-    position: fixed;
+    position: relative;
     overflow-y: hidden;
-    left: calc(#{$lateral-pano-width} + 70px);
     float: left;
-    width: calc(100vh - #{$lateral-pano-width});
-    height: 95vh;
+    margin-left: 50px;
+    width: 100vh;
+    height: 85vh;
     padding-left: 10px;
     font-size: $terminal-font-size;
 }
