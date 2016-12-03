@@ -7,10 +7,27 @@ var commands = {
     listDirectory: function(parameters) {
 
         if (parameters.length > 0) {
-            var directory = Object.keys(this.currentDir[parameters[0]]);
+            var directory_path = parameters[0];
+            var directorList = directory_path.split('/');
+            var tempDir = this.currentDir;
+            var directory = '';
+
+            while (directorList.length > 0) {
+                tempDir = tempDir[directorList[0]];
+                directorList.splice(0, 1);
+            }
+
+            if (typeof directory != 'object') {
+                return directory_path + ' is not a folder';
+            }
+
+            directory = Object.keys(tempDir);
+            delete tempDir;
+
         } else {
-            var directory = Object.keys(this.currentDir);
+            directory = Object.keys(this.currentDir);
         }
+
         directory = directory.toString();
         directory = directory.replace(/,/g, '&nbsp;&nbsp;');
 
