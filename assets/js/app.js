@@ -5,12 +5,14 @@ $(document).ready(function() {
     terminal.initTerminalListener();
 });
 
-},{"./terminal.js":4}],2:[function(require,module,exports){
+},{"./terminal.js":5}],2:[function(require,module,exports){
 var fileTree = require('./lib/tree.json');
+var commandsList = require('./lib/commands.json');
 
 var commands = {
 
     currentDir: fileTree['/']['home'],
+    commandsList: commandsList,
 
     listDirectory: function(parameters) {
 
@@ -77,7 +79,10 @@ var commands = {
 
     help: function() {
         var output = 'commands available:<br>';
-        output += '';
+
+        for (command in commandsList) {
+            output += command + '<br>';
+        }
 
         return output;
     }
@@ -85,7 +90,15 @@ var commands = {
 
 module.exports = commands;
 
-},{"./lib/tree.json":3}],3:[function(require,module,exports){
+},{"./lib/commands.json":3,"./lib/tree.json":4}],3:[function(require,module,exports){
+module.exports= {
+    "ls": "listDirectory",
+    "cd": "changeDirectory",
+    "pwd": "printWorkingDirectory",
+    "cat": "concatenate",
+    "help": "help"
+}
+},{}],4:[function(require,module,exports){
 module.exports={
     "/": {
         "home": {
@@ -115,7 +128,7 @@ module.exports={
         }
     }
 }
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 var commands = require('./commands');
 
 var terminal = {

@@ -1,8 +1,10 @@
 var fileTree = require('./lib/tree.json');
+var commandsList = require('./lib/commands.json');
 
 var commands = {
 
     currentDir: fileTree['/']['home'],
+    commandsList: commandsList,
 
     listDirectory: function(parameters) {
 
@@ -69,7 +71,10 @@ var commands = {
 
     help: function() {
         var output = 'commands available:<br>';
-        output += '';
+
+        for (command in commandsList) {
+            output += command + '<br>';
+        }
 
         return output;
     }
