@@ -18,14 +18,14 @@ var terminal = {
                 var next_saved_command = this.commadHistory[this.commadHistory.length - this.commadHistoryPointer];
                 this.commadHistoryPointer++;
                 (next_saved_command != 'undefined') ? command = next_saved_command : command = '';
-                this.writeCommandOnInput(command);
+                this.updateCommandBox(command);
                 break;
 
             case 40:
                 var previous_saved_command = this.commadHistory[this.commadHistory.length - this.commadHistoryPointer];
                 this.commadHistoryPointer--;
                 (previous_saved_command != 'undefined') ? command = previous_saved_command : command = '';
-                this.writeCommandOnInput(command);
+                this.updateCommandBox(command);
                 break;
 
             default:
@@ -110,7 +110,7 @@ var terminal = {
         return 1;
     },
 
-    writeCommandOnInput: function(command) {
+    updateCommandBox: function(command) {
         var $terminalBox = this.$app.find('.js-terminal-box:last-child');
         var $terminalInput = $terminalBox.find('input');
 
