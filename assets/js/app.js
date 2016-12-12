@@ -133,17 +133,37 @@ var commands = require('./commands');
 
 var terminal = {
 
+    commadHistory: [],
+    commadHistoryPointer: 1,
     commands_list_path: './src/js/lib/commands.json',
     $app: $('#terminal'),
 
     terminalHandleInput: function(input, pressed_key) {
-        if (pressed_key == '13') {
-            this.handleCommandInput(input, this.executeTerminalCommand);
-            return;
-        } else {
-            // TODO
-            return;
+        switch (pressed_key) {
+            case 13:
+                this.handleCommandInput(input, this.executeTerminalCommand);
+                this.commadHistoryPointer = 1;
+                break;
+
+            case 38:
+                var next_saved_command = this.commadHistory[this.commadHistory.length - this.commadHistoryPointer];
+                this.commadHistoryPointer++;
+                (next_saved_command != 'undefined') ? command = next_saved_command : command = '';
+                this.writeCommandOnInput(command);
+                break;
+
+            case 40:
+                var previous_saved_command = this.commadHistory[this.commadHistory.length - this.commadHistoryPointer];
+                this.commadHistoryPointer--;
+                (previous_saved_command != 'undefined') ? command = previous_saved_command : command = '';
+                this.writeCommandOnInput(command);
+                break;
+
+            default:
+                return;
+
         }
+        return;
     },
 
     initTerminalListener: function() {
@@ -221,8 +241,17 @@ var terminal = {
         return 1;
     },
 
+    writeCommandOnInput: function(command) {
+        var $terminalBox = this.$app.find('.js-terminal-box:last-child');
+        var $terminalInput = $terminalBox.find('input');
+
+        $terminalInput.val(command);
+    },
+
     updateCommandHistory: function(input) {
-        // TODO
+        this.commadHistory.push(input);
+        console.log(this.commadHistory);
+
         return 1;
     },
 
