@@ -3,7 +3,7 @@ var commands = require('./commands');
 var terminal = {
 
     commadHistory: [],
-    commadHistoryPointer: 1,
+    commadHistoryPointer: 0,
     commands_list_path: './src/js/lib/commands.json',
     $app: $('#terminal'),
 
@@ -11,20 +11,34 @@ var terminal = {
         switch (pressed_key) {
             case 13:
                 this.handleCommandInput(input, this.executeTerminalCommand);
-                this.commadHistoryPointer = 1;
+                this.commadHistoryPointer = 0;
                 break;
 
             case 38:
-                var next_saved_command = this.commadHistory[this.commadHistory.length - this.commadHistoryPointer];
                 this.commadHistoryPointer++;
-                (next_saved_command != 'undefined') ? command = next_saved_command : command = '';
+                var next_saved_command = this.commadHistory[this.commadHistory.length - this.commadHistoryPointer];
+
+                if (next_saved_command !== undefined) {
+                    var command = next_saved_command;
+                } else {
+                    this.commadHistoryPointer = this.commadHistoryPointer - 1;
+                    var command = this.commadHistory[this.commadHistory.length - this.commadHistoryPointer];
+                }
+
                 this.updateCommandBox(command);
                 break;
 
             case 40:
-                var previous_saved_command = this.commadHistory[this.commadHistory.length - this.commadHistoryPointer];
                 this.commadHistoryPointer--;
-                (previous_saved_command != 'undefined') ? command = previous_saved_command : command = '';
+                var previous_saved_command = this.commadHistory[this.commadHistory.length - this.commadHistoryPointer];
+
+                if (previous_saved_command !== undefined) {
+                    var command = previous_saved_command;
+                } else {
+                    this.commadHistoryPointer = 0;
+                    var command = '';
+                }
+
                 this.updateCommandBox(command);
                 break;
 
@@ -113,6 +127,7 @@ var terminal = {
     updateCommandBox: function(command) {
         var $terminalBox = this.$app.find('.js-terminal-box:last-child');
         var $terminalInput = $terminalBox.find('input');
+        console.log(this.commadHistoryPointer);
 
         $terminalInput.val(command);
     },
