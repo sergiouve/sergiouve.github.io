@@ -1,7 +1,8 @@
  {
-    "ls": "listDirectory",
-    "cd": "changeDirectory",
-    "pwd": "printWorkingDirectory",
-    "cat": "concatenate",
-    "help": "help"
+    "ls":       "listDirectory",
+    "cd":       "changeDirectory",
+    "pwd":      "printWorkingDirectory",
+    "cat":      "concatenate",
+    "help":     "help",
+    "startx":   "startx"
 }

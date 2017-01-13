@@ -85,6 +85,10 @@ var commands = {
         }
 
         return output;
+    },
+
+    startx: function() {
+        window.location.href = window.location.href + 'startx.html';
     }
 };
 
@@ -92,11 +96,12 @@ module.exports = commands;
 
 },{"./lib/commands.json":3,"./lib/tree.json":4}],3:[function(require,module,exports){
 module.exports= {
-    "ls": "listDirectory",
-    "cd": "changeDirectory",
-    "pwd": "printWorkingDirectory",
-    "cat": "concatenate",
-    "help": "help"
+    "ls":       "listDirectory",
+    "cd":       "changeDirectory",
+    "pwd":      "printWorkingDirectory",
+    "cat":      "concatenate",
+    "help":     "help",
+    "startx":   "startx"
 }
 },{}],4:[function(require,module,exports){
 module.exports={

@@ -77,6 +77,10 @@ var commands = {
         }
 
         return output;
+    },
+
+    startx: function() {
+        window.location.href = window.location.href + 'startx.html';
     }
 };
 
