@@ -1,4 +1,5 @@
 var terminal = require('./terminal.js');
+var commandsList = require('./lib/commands.json');
 
 $(document).ready(function() {
 
@@ -13,17 +14,48 @@ $(document).ready(function() {
     };
 
     var hideHelpModal = function() {
+        var $modalSection = $('#help-modal');
+        var $modalHelpBox = $modalSection.find('.js-help-container');
 
-    }
-
-    var initHelpButton = function() {
-        var $helpButton = $('.js-help');
-
-        $helpButton.on('click', function() {
-            showHelpModal();
-        });
+        $modalHelpBox.animate({
+            top: '-=900'
+        }, 400);
+        $modalSection.hide();
     };
 
-    initHelpButton();
+    var populateCommandsList = function() {
+        var $modalHelpBox = $('.js-help-container');
+        var $commandsListElement = $modalHelpBox.find('.js-commands-list');
+
+        for (command in commandsList) {
+            if (commandsList.hasOwnProperty(command)) {
+                var liElement = '<li><strong>' + command + '</strong>: ' + commandsList[command] + '</li>';
+                $commandsListElement.append(liElement);
+            }
+        }
+    };
+
+    var initModalListeners = function() {
+        var $helpButton = $('.js-help');
+        var $modalSection = $('#help-modal');
+        var $modalHelpBox = $('.js-help-container');
+
+        $helpButton.on('click', function(e) {
+            e.preventDefault();
+            showHelpModal();
+        });
+
+        $modalSection.on('click', function() {
+            hideHelpModal();
+        });
+
+        $modalHelpBox.on('click', function(e) {
+            e.stopPropagation();
+        });
+
+        populateCommandsList();
+    };
+
+    initModalListeners();
     terminal.initTerminalListener();
 });

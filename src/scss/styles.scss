@@ -152,7 +152,7 @@ body {
     height: 100%;
     width: 100%;
     z-index: 99;
-    background-color: rgba($dark-theme-main-color, 0.8);
+    background-color: rgba($dark-theme-main-color, 0.9);
 }
 
 .help-content {
@@ -167,12 +167,11 @@ body {
     left: 0px;
     right: 0px;
     margin: auto;
-    height: 400px;
     width: 600px;
     padding: 20px;
     background-color: $dark-theme-main-color;
 
-    h4 {
+    h3 {
         margin-top: 0px;
     }
 }
