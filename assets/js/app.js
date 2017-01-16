@@ -61,14 +61,17 @@ $(document).ready(function() {
     terminal.initTerminalListener();
 });
 
-},{"./lib/commands.json":3,"./terminal.js":5}],2:[function(require,module,exports){
+},{"./lib/commands.json":3,"./terminal.js":6}],2:[function(require,module,exports){
+var helpers = require('./lib/helpers.js');
 var fileTree = require('./lib/tree.json');
 var commandsList = require('./lib/commands.json');
 
 var commands = {
 
+    fileTree: fileTree,
     currentDir: fileTree['/']['home'],
     commandsList: commandsList,
+    helpers: helpers,
 
     listDirectory: function(parameters) {
 
@@ -103,6 +106,12 @@ var commands = {
     changeDirectory: function(parameters) {
         var directoryPath = parameters[0].split('/');
         var directory = directoryPath[0];
+
+        if (directory == '..') {
+            var parent = this.helpers.getParentLevelName(this.fileTree, this.currentDir);
+            console.log(parent);
+            return;
+        }
 
         if (typeof this.currentDir[directory] != 'object') {
             return directory + ' is not a folder';
@@ -150,7 +159,7 @@ var commands = {
 
 module.exports = commands;
 
-},{"./lib/commands.json":3,"./lib/tree.json":4}],3:[function(require,module,exports){
+},{"./lib/commands.json":3,"./lib/helpers.js":4,"./lib/tree.json":5}],3:[function(require,module,exports){
 module.exports= {
     "ls":       "listDirectory",
     "cd":       "changeDirectory",
@@ -160,6 +169,23 @@ module.exports= {
     "startx":   "startx"
 }
 },{}],4:[function(require,module,exports){
+var helpers = {
+
+    getParentLevelName: function(tree, needle) {
+        for (level in tree) {
+            if (tree[level] == needle) {
+                return tree[level];
+            } else {
+                this.getParentLevelName(tree[level], needle);
+            }
+        }
+    }
+
+}
+
+module.exports = helpers;
+
+},{}],5:[function(require,module,exports){
 module.exports={
     "/": {
         "home": {
@@ -189,7 +215,7 @@ module.exports={
         }
     }
 }
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 var commands = require('./commands');
 
 var terminal = {
@@ -242,7 +268,6 @@ var terminal = {
     },
 
     initTerminalListener: function() {
-        console.log('initializing terminal listener...');
         var $terminalBox = this.$app.find('.js-terminal-box:last-child');
         var $terminal = $terminalBox.find('input');
 
@@ -254,15 +279,12 @@ var terminal = {
 
             terminal.terminalHandleInput(input, pressed_key);
         });
-        console.log('done.');
         this.focusTerminal();
     },
 
     focusTerminal: function() {
-        console.log('focusing terminal...');
         var $terminal = this.$app.find('.terminal-input:last-child');
         $terminal.focus();
-        console.log('done.');
     },
 
     executeTerminalCommand: function(input, commandsList) {
@@ -319,15 +341,11 @@ var terminal = {
     updateCommandBox: function(command) {
         var $terminalBox = this.$app.find('.js-terminal-box:last-child');
         var $terminalInput = $terminalBox.find('input');
-        console.log(this.commadHistoryPointer);
-
         $terminalInput.val(command);
     },
 
     updateCommandHistory: function(input) {
         this.commadHistory.push(input);
-        console.log(this.commadHistory);
-
         return 1;
     },
 

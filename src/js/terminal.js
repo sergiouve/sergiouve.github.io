@@ -50,7 +50,6 @@ var terminal = {
     },
 
     initTerminalListener: function() {
-        console.log('initializing terminal listener...');
         var $terminalBox = this.$app.find('.js-terminal-box:last-child');
         var $terminal = $terminalBox.find('input');
 
@@ -62,15 +61,12 @@ var terminal = {
 
             terminal.terminalHandleInput(input, pressed_key);
         });
-        console.log('done.');
         this.focusTerminal();
     },
 
     focusTerminal: function() {
-        console.log('focusing terminal...');
         var $terminal = this.$app.find('.terminal-input:last-child');
         $terminal.focus();
-        console.log('done.');
     },
 
     executeTerminalCommand: function(input, commandsList) {
@@ -127,15 +123,11 @@ var terminal = {
     updateCommandBox: function(command) {
         var $terminalBox = this.$app.find('.js-terminal-box:last-child');
         var $terminalInput = $terminalBox.find('input');
-        console.log(this.commadHistoryPointer);
-
         $terminalInput.val(command);
     },
 
     updateCommandHistory: function(input) {
         this.commadHistory.push(input);
-        console.log(this.commadHistory);
-
         return 1;
     },
 
