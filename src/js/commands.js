@@ -43,9 +43,9 @@ var commands = {
         var directoryPath = parameters[0].split('/');
         var directory = directoryPath[0];
 
+        // TODO
         if (directory == '..') {
             var parent = this.helpers.getParentLevel(this.fileTree, this.currentDir);
-            console.log(parent);
             return;
         }
 
@@ -69,7 +69,6 @@ var commands = {
 
     concatenate: function(parameters) {
         var file = parameters[0];
-        console.log(typeof this.currentDir[file]);
 
         if (typeof this.currentDir[file] != 'string') {
             return file + ' is not a file';
