@@ -44,7 +44,7 @@ var commands = {
         var directory = directoryPath[0];
 
         if (directory == '..') {
-            var parent = this.helpers.getParentLevelName(this.fileTree, this.currentDir);
+            var parent = this.helpers.getParentLevel(this.fileTree, this.currentDir);
             console.log(parent);
             return;
         }

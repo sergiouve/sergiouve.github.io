@@ -108,7 +108,7 @@ var commands = {
         var directory = directoryPath[0];
 
         if (directory == '..') {
-            var parent = this.helpers.getParentLevelName(this.fileTree, this.currentDir);
+            var parent = this.helpers.getParentLevel(this.fileTree, this.currentDir);
             console.log(parent);
             return;
         }
@@ -171,13 +171,18 @@ module.exports= {
 },{}],4:[function(require,module,exports){
 var helpers = {
 
-    getParentLevelName: function(tree, needle) {
+    getParentLevel: function(tree, needle) {
         for (level in tree) {
-            if (tree[level] == needle) {
+
+            if (tree[level] == needle)
                 return tree[level];
+
+            if (typeof tree[level] == 'object') {
+                this.getParentLevel(tree[level], needle);
             } else {
-                this.getParentLevelName(tree[level], needle);
+                this.getParentLevel(tree, needle);
             }
+
         }
     }
 

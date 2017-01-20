@@ -1,12 +1,17 @@
 var helpers = {
 
-    getParentLevelName: function(tree, needle) {
+    getParentLevel: function(tree, needle) {
         for (level in tree) {
-            if (tree[level] == needle) {
+
+            if (level == needle)
                 return tree[level];
+
+            if (typeof tree[level] == 'object') {
+                this.getParentLevel(tree[level], needle);
             } else {
-                this.getParentLevelName(tree[level], needle);
+                this.getParentLevel(tree, needle);
             }
+
         }
     }
 
