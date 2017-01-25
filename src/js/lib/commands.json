@@ -4,5 +4,6 @@
     "pwd":      "printWorkingDirectory",
     "cat":      "concatenate",
     "help":     "help",
-    "startx":   "startx"
+    "startx":   "startx",
+    "clear":   "clear"
 }

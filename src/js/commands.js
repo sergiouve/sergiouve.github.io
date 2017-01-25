@@ -89,6 +89,10 @@ var commands = {
 
     startx: function() {
         window.location.href = window.location.href + 'startx.html';
+    },
+
+    clear: function() {
+
     }
 };
 
