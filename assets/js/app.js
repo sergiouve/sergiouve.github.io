@@ -109,7 +109,7 @@ var commands = {
 
         // TODO
         if (directory == '..') {
-            var parent = this.helpers.getParentLevel(this.fileTree, this.currentDir);
+            var parent = this.helpers.getJSONParentLevel(this.fileTree, this.currentDir);
             return;
         }
 
@@ -171,10 +171,10 @@ module.exports= {
 var helpers = {
 
     // TODO
-    getParentLevel: function(tree, needle) {
+    getJSONParentLevel: function(tree, needle) {
         Object.keys(tree).forEach(function(element) {
             if (element == needle) return tree[element];
-            if (typeof tree[element] == 'object') helpers.getParentLevel(tree[element], needle);
+            if (typeof tree[element] == 'object') helpers.getJSONParentLevel(tree[element], needle);
 
             return tree[element];
         });
@@ -191,8 +191,8 @@ module.exports={
             "projects": {
 
                 "yodo": {
-                    "description": "Well yodo is this awesome thing you know, one day I'll tell y'all about it. Not now though...",
-                    "url": ""
+                    "description": "I spend most of my computer time hitting keys at my terminal,<br> so at some point it started yo make sense to group all those ",
+                    "url": "<a href=\"https://github.com/sergiouve/yoDo\">yodo</a>"
                 },
 
                 "sergiouve.github.io": {

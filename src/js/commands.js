@@ -45,7 +45,7 @@ var commands = {
 
         // TODO
         if (directory == '..') {
-            var parent = this.helpers.getParentLevel(this.fileTree, this.currentDir);
+            var parent = this.helpers.getJSONParentLevel(this.fileTree, this.currentDir);
             return;
         }
 
