@@ -192,17 +192,17 @@ module.exports={
 
                 "yodo": {
                     "description": "I spend most of my computer time hitting keys at my terminal,<br> so at some point it started yo make sense to group all those ",
-                    "url": "<a href=\"https://github.com/sergiouve/yoDo\">yodo</a>"
+                    "url": "<a target=\"_blank\" href=\"https://github.com/sergiouve/yoDo\">yodo</a>"
                 },
 
                 "sergiouve.github.io": {
                     "description": "this website",
-                    "url": "sergiouve.github.io"
+                    "url": "<a target=\"_blank\" href=\"https://github.com/sergiouve/sergiouve.github.io\">sergiouve.github.io</a>"
                 },
 
                 "yoKnight": {
                     "description": "yoKnight",
-                    "url": ""
+                    "url": "<a target=\"_blank\" href=\"https://github.com/sergiouve/yoKnight\">yoKnight</a>"
                 }
             },
 
