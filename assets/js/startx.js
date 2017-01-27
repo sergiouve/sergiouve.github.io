@@ -1,0 +1,1 @@
+$(document).ready(function(){function t(){var t=$(".js-menu-button");t.on("click",function(){a($(this))})}function a(t){var a=t.data("section"),n=$(".js-section"),c=$(".js-menu-button");c.removeClass("active"),t.addClass("active"),n.each(function(){var t=$(this),n=t.data("section");n==a?t.addClass("active"):t.removeClass("active")})}t()});

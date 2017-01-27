@@ -21,12 +21,19 @@ gulp.task('sass', function() {
         .pipe(gulp.dest('./assets/css'));
 });
 
+gulp.task('js', function() {
+    gulp.src('./src/js/startx/startx.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('assets/js/'));
+});
+
 gulp.task('watch', function() {
     gulp.watch('./src/js/*.js', ['browserify']);
+    gulp.watch('./src/js/startx/*.js', ['js']);
     gulp.watch('./src/js/*/*.js', ['browserify']);
     gulp.watch('./src/scss/*.scss', ['sass']);
     gulp.watch('./src/scss/startx/*.scss', ['sass']);
     gulp.watch('./src/scss/startx/*/*.scss', ['sass']);
 });
 
-gulp.task('default', ['browserify', 'sass', 'watch']);
+gulp.task('default', ['browserify', 'sass', 'js', 'watch']);
