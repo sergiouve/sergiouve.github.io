@@ -153,6 +153,10 @@ var commands = {
 
     startx: function() {
         window.location.href = window.location.href + 'startx.html';
+    },
+
+    clear: function() {
+
     }
 };
 
@@ -165,7 +169,8 @@ module.exports= {
     "pwd":      "printWorkingDirectory",
     "cat":      "concatenate",
     "help":     "help",
-    "startx":   "startx"
+    "startx":   "startx",
+    "clear":   "clear"
 }
 },{}],4:[function(require,module,exports){
 var helpers = {
