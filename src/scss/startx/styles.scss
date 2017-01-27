@@ -15,12 +15,12 @@ html, body {
     width: 100%;
     color: $font-color;
 
-    background: linear-gradient(230deg, #077cb2, #065e90);
+    background: linear-gradient(230deg, #229cd4, #023451);
     background-size: 400% 400%;
 
-    -webkit-animation: animation 170s ease infinite;
-    -moz-animation: animation 170s ease infinite;
-    animation: animation 170s ease infinite;
+    -webkit-animation: animation 70s ease infinite;
+    -moz-animation: animation 70s ease infinite;
+    animation: animation 70s ease infinite;
 
     @-webkit-keyframes animation {
         0%{background-position:0% 50%}
@@ -85,7 +85,6 @@ button {
     right: 0;
     left: 0;
     width: 600px;
-    border: 1px solid white
 
     &.active { display: block; }
 }
