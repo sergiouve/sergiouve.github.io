@@ -23,7 +23,7 @@ gulp.task('sass', function() {
 
 gulp.task('js', function() {
     gulp.src('./src/js/startx/startx.js')
-        .pipe(uglify())
+        // .pipe(uglify())
         .pipe(gulp.dest('assets/js/'));
 });
 

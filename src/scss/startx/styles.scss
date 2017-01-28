@@ -3,7 +3,7 @@ $main-font-family: 'Source Code Pro';
 
 html, body {
     margin: 0;
-    height: 100vh;
+    height: 100%;
 }
 
 #page {
@@ -40,7 +40,7 @@ html, body {
 }
 
 .container--title {
-    font-size: 50px;
+    h1 { font-size: 50px; }
 }
 
 .container--buttons {
@@ -87,4 +87,9 @@ button {
     width: 600px;
 
     &.active { display: block; }
+}
+
+.project {
+    width: 100%;
+    margin-bottom: 30px;
 }
