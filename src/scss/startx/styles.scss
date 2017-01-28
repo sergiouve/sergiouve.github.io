@@ -18,9 +18,9 @@ html, body {
     background: linear-gradient(230deg, #229cd4, #023451);
     background-size: 400% 400%;
 
-    -webkit-animation: animation 170s linear infinite;
-    -moz-animation: animation 170s linear infinite;
-    animation: animation 170s linear infinite;
+    -webkit-animation: animation 90s linear infinite;
+    -moz-animation: animation 90s linear infinite;
+    animation: animation 90s linear infinite;
 
     @-webkit-keyframes animation {
         0%{background-position:0% 50%}
