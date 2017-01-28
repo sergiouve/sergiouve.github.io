@@ -8,6 +8,8 @@ $(document).ready(function() {
 
             if ($this.data('section') == 'projects') {
                 getMyRepos();
+            } else {
+                emptyProjectsSection();
             }
         });
     }
@@ -35,7 +37,7 @@ $(document).ready(function() {
     function getMyRepos() {
         var endpoint = 'https://api.github.com/users/sergiouve/repos';
         var repos_type = 'owner';
-        var sort = 'updated';
+        var sort = 'pushed';
         var direction = 'desc';
 
         $.ajax({
@@ -44,7 +46,6 @@ $(document).ready(function() {
             data: 'type=' + repos_type + '&sort=' + sort + '&direction=' + direction,
             headers: { 'Accept': 'application/vnd.github.v3+json' },
             success: function(response) {
-                emptyProjectsSection();
                 populateProjectsSection(response);
             },
             error: function(response) {
@@ -74,10 +75,13 @@ $(document).ready(function() {
             return $(this).data('section') == 'projects';
         });
 
-        console.log(repoInfo);
+        // console.log(repoInfo);
 
-        var project_div = '<div class="project"><h4>' + repoInfo.name + '</h4><p>' + repoInfo.description + '</p></div>';
-        $projectsSection.append(project_div);
+        var $project_div = $('<div class="project"><h5>' + repoInfo.name + '</h5><p>' + repoInfo.description + '</p></div>');
+        // TODO
+        // $project_div.css('display', 'none');
+        // $project_div.slideToggle(500);
+        $projectsSection.append($project_div);
     }
 
     initMenuButtons();

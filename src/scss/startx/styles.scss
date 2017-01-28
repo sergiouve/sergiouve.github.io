@@ -87,6 +87,10 @@ button {
     width: 600px;
 
     &.active { display: block; }
+
+    h2 {
+        margin-bottom: 20px;
+    }
 }
 
 .project {
