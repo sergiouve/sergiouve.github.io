@@ -1,5 +1,14 @@
 $(document).ready(function() {
 
+    function startShowPageAnimation() {
+        var $page = $('#page');
+
+        $page.animate({
+            top: '0px',
+            opacity: '1'
+        }, 800);
+    }
+
     function initMenuButtons() {
         var $buttons = $('.js-menu-button');
         $buttons.on('click', function() {
@@ -84,6 +93,7 @@ $(document).ready(function() {
         $projectsSection.append($projectDiv);
     }
 
+    startShowPageAnimation();
     initMenuButtons();
 
 });
