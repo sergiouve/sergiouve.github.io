@@ -77,11 +77,11 @@ $(document).ready(function() {
 
         // console.log(repoInfo);
 
-        var $project_div = $('<div class="project"><h5>' + repoInfo.name + '</h5><p>' + repoInfo.description + '</p></div>');
+        var $projectDiv = $('<div class="project"><h5>' + repoInfo.name + '</h5><p>' + repoInfo.description + '</p></div>');
         // TODO
-        // $project_div.css('display', 'none');
-        // $project_div.slideToggle(500);
-        $projectsSection.append($project_div);
+        // $projectDiv.css('display', 'none');
+        // $projectDiv.slideToggle(500);
+        $projectsSection.append($projectDiv);
     }
 
     initMenuButtons();
