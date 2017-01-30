@@ -1,1 +1,99 @@
-$(document).ready(function(){function t(){var t=$("#page");t.animate({top:"0px",opacity:"1"},800)}function n(){var t=$(".js-menu-button");t.on("click",function(){$this=$(this),e($this),"projects"==$this.data("section")?i():c()})}function e(t){var n=t.data("section"),e=$(".js-section"),i=$(".js-menu-button");i.removeClass("active"),t.addClass("active"),e.each(function(){var t=$(this),e=t.data("section");e==n?t.addClass("active"):t.removeClass("active")})}function i(){var t="https://api.github.com/users/sergiouve/repos",n="owner",e="pushed",i="desc";$.ajax({url:t,method:"GET",data:"type="+n+"&sort="+e+"&direction="+i,headers:{Accept:"application/vnd.github.v3+json"},success:function(t){o(t)},error:function(t){console.log("fire, FIRE!")}})}function o(t){Object.keys(t).map(function(n,e){s(t[n])})}function c(){var t=$(".js-section"),n=t.filter(function(){return"projects"==$(this).data("section")}),e=n.find(".project");e.remove()}function s(t){var n=$(".js-section"),e=n.filter(function(){return"projects"==$(this).data("section")}),i=$('<div class="project"><h5>'+t.name+"</h5><p>"+t.description+"</p></div>");e.append(i)}t(),n()});
+$(document).ready(function() {
+
+    function startShowPageAnimation() {
+        var $page = $('#page');
+
+        $page.animate({
+            top: '0px',
+            opacity: '1'
+        }, 800);
+    }
+
+    function initMenuButtons() {
+        var $buttons = $('.js-menu-button');
+        $buttons.on('click', function() {
+            $this = $(this);
+            toggleSection($this);
+
+            if ($this.data('section') == 'projects') {
+                getMyRepos();
+            } else {
+                emptyProjectsSection();
+            }
+        });
+    }
+
+    function toggleSection($button) {
+        var aimed_section = $button.data('section');
+        var $sections = $('.js-section');
+        var $buttons = $('.js-menu-button');
+
+        $buttons.removeClass('active');
+        $button.addClass('active');
+
+        $sections.each(function() {
+            var $this = $(this);
+            var section = $this.data('section');
+
+            if (section == aimed_section) {
+                $this.addClass('active');
+            } else {
+                $this.removeClass('active');
+            }
+        });
+    }
+
+    function getMyRepos() {
+        var endpoint = 'https://api.github.com/users/sergiouve/repos';
+        var repos_type = 'owner';
+        var sort = 'pushed';
+        var direction = 'desc';
+
+        $.ajax({
+            url: endpoint,
+            method: 'GET',
+            data: 'type=' + repos_type + '&sort=' + sort + '&direction=' + direction,
+            headers: { 'Accept': 'application/vnd.github.v3+json' },
+            success: function(response) {
+                populateProjectsSection(response);
+            },
+            error: function(response) {
+                console.log('fire, FIRE!');
+            }
+        });
+    }
+
+    function populateProjectsSection(reposInfo) {
+        Object.keys(reposInfo).map(function(key, index) {
+            printRepoInfo(reposInfo[key]);
+        });
+    }
+
+    function emptyProjectsSection() {
+        var $sections = $('.js-section');
+        var $projectsSection = $sections.filter(function() {
+            return $(this).data('section') == 'projects';
+        });
+        var $projectElements = $projectsSection.find('.project');
+        $projectElements.remove();
+    }
+
+    function printRepoInfo(repoInfo) {
+        var $sections = $('.js-section');
+        var $projectsSection = $sections.filter(function() {
+            return $(this).data('section') == 'projects';
+        });
+
+        // console.log(repoInfo);
+
+        var $projectDiv = $('<div class="project"><h5>' + repoInfo.name + '</h5><p>' + repoInfo.description + '</p></div>');
+        // TODO
+        // $projectDiv.css('display', 'none');
+        // $projectDiv.slideToggle(500);
+        $projectsSection.append($projectDiv);
+    }
+
+    startShowPageAnimation();
+    initMenuButtons();
+
+});
