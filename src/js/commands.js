@@ -5,7 +5,8 @@ var commandsList = require('./lib/commands.json');
 var commands = {
 
     fileTree: fileTree,
-    currentDir: fileTree['/']['home'],
+    currentPath: {},
+    currentDir: fileTree['/'],
     commandsList: commandsList,
     helpers: helpers,
 
