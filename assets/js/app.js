@@ -65,11 +65,12 @@ $(document).ready(function() {
 var helpers = require('./lib/helpers.js');
 var fileTree = require('./lib/tree.json');
 var commandsList = require('./lib/commands.json');
+var currentPath = ['/'];
 
 var commands = {
 
     fileTree: fileTree,
-    currentPath: {},
+    currentPath: currentPath,
     currentDir: fileTree['/'],
     commandsList: commandsList,
     helpers: helpers,
@@ -110,7 +111,9 @@ var commands = {
 
         // TODO
         if (directory == '..') {
-            var parent = this.helpers.getJSONParentLevel(this.fileTree, this.currentDir);
+            var parent = this.helpers.getParentFolder(this.fileTree, this.currentPath);
+            this.currentPath = this.currentPath.pop();
+            console.log(parent);
             return;
         }
 
@@ -119,6 +122,7 @@ var commands = {
         }
 
         this.currentDir = this.currentDir[directory];
+        this.currentPath = this.helpers.updateCurrentPath(this.currentPath, directory);
         directoryPath.splice(0, 1);
 
         if (directoryPath.length > 0) {
@@ -177,26 +181,21 @@ module.exports= {
 var helpers = {
 
     // TODO
-    getJSONParentLevel: function(tree, needle) {
-        if(needle !== true) {
-            console.log('setting marker');
-            // !! Im setting the marker in needle but I need it on tree...
-            needle['..'] = '..';
-            needle = true;
-            helpers.getJSONParentLevel(tree, needle);
-        } else {
-            Object.keys(tree).forEach(function(element) {
-                console.log('iterating');
-                if (element.hasOwnProperty('..')) {
-                    console.log('marker found');
-                    delete element['..'];
-                    return tree;
-                } else {
-                    console.log('calling me self');
-                    helpers.getJSONParentLevel(tree[element], needle);
-                }
-            });
+    getParentFolder: function(tree, pathList) {
+        var needle = pathList[pathList.length - 1];
+        for (level in tree) {
+            if (level == needle){
+                return tree[level];
+            } else if (!!tree[level] && typeof (tree[level]) == "object") {
+                console.log(level, tree[level])
+                helpers.getParentFolder(tree[level], pathList);
+            }
         }
+    },
+
+    updateCurrentPath: function(currentPath, directory) {
+        currentPath.push(directory);
+        return currentPath;
     }
 
 }

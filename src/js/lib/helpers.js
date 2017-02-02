@@ -1,26 +1,21 @@
 var helpers = {
 
     // TODO
-    getJSONParentLevel: function(tree, needle) {
-        if(needle !== true) {
-            console.log('setting marker');
-            // !! Im setting the marker in needle but I need it on tree...
-            needle['..'] = '..';
-            needle = true;
-            helpers.getJSONParentLevel(tree, needle);
-        } else {
-            Object.keys(tree).forEach(function(element) {
-                console.log('iterating');
-                if (element.hasOwnProperty('..')) {
-                    console.log('marker found');
-                    delete element['..'];
-                    return tree;
-                } else {
-                    console.log('calling me self');
-                    helpers.getJSONParentLevel(tree[element], needle);
-                }
-            });
+    getParentFolder: function(tree, pathList) {
+        var needle = pathList[pathList.length - 1];
+        for (level in tree) {
+            if (level == needle){
+                return tree[level];
+            } else if (!!tree[level] && typeof (tree[level]) == "object") {
+                console.log(level, tree[level])
+                helpers.getParentFolder(tree[level], pathList);
+            }
         }
+    },
+
+    updateCurrentPath: function(currentPath, directory) {
+        currentPath.push(directory);
+        return currentPath;
     }
 
 }

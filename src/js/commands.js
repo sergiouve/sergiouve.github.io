@@ -1,11 +1,12 @@
 var helpers = require('./lib/helpers.js');
 var fileTree = require('./lib/tree.json');
 var commandsList = require('./lib/commands.json');
+var currentPath = ['/'];
 
 var commands = {
 
     fileTree: fileTree,
-    currentPath: {},
+    currentPath: currentPath,
     currentDir: fileTree['/'],
     commandsList: commandsList,
     helpers: helpers,
@@ -46,7 +47,9 @@ var commands = {
 
         // TODO
         if (directory == '..') {
-            var parent = this.helpers.getJSONParentLevel(this.fileTree, this.currentDir);
+            var parent = this.helpers.getParentFolder(this.fileTree, this.currentPath);
+            this.currentPath = this.currentPath.pop();
+            console.log(parent);
             return;
         }
 
@@ -55,6 +58,7 @@ var commands = {
         }
 
         this.currentDir = this.currentDir[directory];
+        this.currentPath = this.helpers.updateCurrentPath(this.currentPath, directory);
         directoryPath.splice(0, 1);
 
         if (directoryPath.length > 0) {
