@@ -133,7 +133,7 @@ var commands = {
     },
 
     printWorkingDirectory: function() {
-
+      return this.helpers.formatCurrentPathString(currentPath);
     },
 
     concatenate: function(parameters) {
@@ -195,6 +195,13 @@ var helpers = {
 
     updateCurrentPath: function(currentPath, directory) {
         currentPath.push(directory);
+        return currentPath;
+    },
+
+    formatCurrentPathString: function(currentPath) {
+        currentPath = currentPath.toString();
+        currentPath = currentPath.replace(/,/g, '/');
+        currentPath = currentPath.replace(/\/\//g, '/');
         return currentPath;
     }
 

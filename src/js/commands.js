@@ -69,7 +69,7 @@ var commands = {
     },
 
     printWorkingDirectory: function() {
-
+      return this.helpers.formatCurrentPathString(currentPath);
     },
 
     concatenate: function(parameters) {
