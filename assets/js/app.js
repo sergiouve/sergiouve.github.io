@@ -57,7 +57,24 @@ $(document).ready(function() {
         populateCommandsList();
     };
 
+    var randomizeJob = function() {
+      var jobs = [
+        'Rainbow Engineer',
+        'Pet Detective',
+        'Wannabe Pirate',
+        'Monkey Coder',
+        'Ex KGB',
+        'That Dude'
+      ];
+
+      var job_title = jobs[Math.floor(Math.random() * jobs.length)];
+      var $jobSpan = $('.js-job-title');
+
+      $jobSpan.html(job_title);
+    };
+
     initModalListeners();
+    randomizeJob();
     terminal.initTerminalListener();
 });
 
