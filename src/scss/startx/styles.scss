@@ -5,7 +5,12 @@
 }
 
 .section__container {
+  display: none;
   opacity: 0;
+  transition: all .33s ease;
 
-  &.active { opacity: 1; }
+  &.active {
+    display: block;
+    opacity: 1;
+  }
 }

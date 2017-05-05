@@ -79,11 +79,8 @@ $(document).ready(function() {
     var $projectsSection = $sections.filter(function() {
       return $(this).data('section') == 'projects';
     });
+    var $projectDiv = $('<div class="project-box js-project"><h5 class="project-box__title">' + repoInfo.name + '</h5><p>' + repoInfo.description + '</p></div>');
 
-    var $projectDiv = $('<div class="project-box js-project"><h5>' + repoInfo.name + '</h5><p>' + repoInfo.description + '</p></div>');
-    // TODO
-    // $projectDiv.css('display', 'none');
-    // $projectDiv.slideToggle(500);
     $projectsSection.append($projectDiv);
   }
 
