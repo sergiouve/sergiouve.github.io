@@ -1,4 +1,8 @@
-.back-link { padding: 5px 10px; }
+.back-link {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+}
 
 .section__container {
   opacity: 0;
