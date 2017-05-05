@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   function initMenuButtons() {
-    var $buttons = $('.js-menu-button');
+    var $buttons = $('.js-section-button');
 
     $buttons.on('click', function() {
       $this = $(this);
@@ -18,7 +18,7 @@ $(document).ready(function() {
   function toggleSection($button) {
     var aimed_section = $button.data('section');
     var $sections = $('.js-section');
-    var $buttons = $('.js-menu-button');
+    var $buttons = $('.js-section-button');
 
     $buttons.removeClass('active');
     $button.addClass('active');
