@@ -50,6 +50,7 @@ $(document).ready(function() {
       data: 'type=' + repos_type + '&sort=' + sort + '&direction=' + direction,
       headers: { 'Accept': 'application/vnd.github.v3+json' },
       success: function(response) {
+        console.log(response);
         populateProjectsSection(response);
       },
       error: function(response) {
