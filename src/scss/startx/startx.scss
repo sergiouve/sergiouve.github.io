@@ -1,2 +1,6 @@
-@import "../reset.scss";
+@import "../reset";
+
+@import "common/variables";
+@import "common/helpers";
+
 @import "styles.scss";
