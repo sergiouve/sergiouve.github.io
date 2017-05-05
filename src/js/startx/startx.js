@@ -5,6 +5,9 @@ $(document).ready(function() {
 
     $buttons.on('click', function() {
       $this = $(this);
+
+      if ($this.hasClass('active')) return;
+
       toggleSection($this);
 
       if ($this.data('section') == 'projects') {
@@ -63,11 +66,10 @@ $(document).ready(function() {
 
   function emptyProjectsSection() {
     var $sections = $('.js-section');
-    var $projectElements = $projectsSection.find('.project');
-
     var $projectsSection = $sections.filter(function() {
       return $(this).data('section') == 'projects';
     });
+    var $projectElements = $projectsSection.find('.js-project');
 
     $projectElements.remove();
   }
@@ -78,7 +80,7 @@ $(document).ready(function() {
       return $(this).data('section') == 'projects';
     });
 
-    var $projectDiv = $('<div class="project"><h5>' + repoInfo.name + '</h5><p>' + repoInfo.description + '</p></div>');
+    var $projectDiv = $('<div class="project-box js-project"><h5>' + repoInfo.name + '</h5><p>' + repoInfo.description + '</p></div>');
     // TODO
     // $projectDiv.css('display', 'none');
     // $projectDiv.slideToggle(500);
