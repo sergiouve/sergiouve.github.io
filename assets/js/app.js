@@ -134,6 +134,10 @@ var commands = {
       return;
     }
 
+    if (directory == '.') {
+      return;
+    }
+
     if (typeof this.currentDir[directory] != 'object') {
       return directory + ' is not a folder';
     }
