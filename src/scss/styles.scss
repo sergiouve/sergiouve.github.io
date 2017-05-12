@@ -1,7 +1,8 @@
 
-/* Meida queries variables */
+/* Media queries variables */
 
-$md-tablet-query: 880px;
+$screen-md: 1200px;
+$screen-xs: 768px;
 
 /* Color variables */
 
@@ -54,8 +55,12 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  padding: 40px;
+  padding: 10px;
   overflow: hidden;
+
+  @media (min-width: $screen-xs) {
+    padding: 40px;
+  }
 }
 
 .pano--lateral {
@@ -75,7 +80,7 @@ body {
     }
   }
 
-  @media (max-width: $md-tablet-query) {
+  @media (max-width: $screen-xs) {
     width: 100vh;
     margin-bottom: 25px;
     padding-right: 0px;
@@ -98,7 +103,7 @@ body {
   padding-left: 10px;
   font-size: $terminal-font-size;
 
-  @media (max-width: $md-tablet-query) {
+  @media (max-width: $screen-xs) {
     width: 100vh;
     margin-left: 0px;
   }
