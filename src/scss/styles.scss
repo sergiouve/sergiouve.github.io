@@ -29,155 +29,155 @@ $lateral-pano-width: 240px;
 /* Temp font-face */
 
 @font-face {
-    font-family: 'Source Code Pro';
-    src: url('../fonts/SourceCodePro-Regular.ttf');
+  font-family: 'Source Code Pro';
+  src: url('../fonts/SourceCodePro-Regular.ttf');
 }
 
 /* Common styles */
 
 html, body {
-    margin: 0;
-    padding: 0;
-    background-color: $dark-theme-main-color;
-    font-size: $main-font-size;
-    font-family: $main-font-family;
-    color: $dark-theme-secondary-color;
+  margin: 0;
+  padding: 0;
+  background-color: $dark-theme-main-color;
+  font-size: $main-font-size;
+  font-family: $main-font-family;
+  color: $dark-theme-secondary-color;
 }
 
 body {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 }
 
 #page {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: 40px;
-    overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 40px;
+  overflow: hidden;
 }
 
 .pano--lateral {
-    position: relative;
-    float: left;
-    height: 25vh;
-    width: $lateral-pano-width;
-    background-color: $dark-theme-pano-color;
-    padding: 0px 10px;
+  position: relative;
+  float: left;
+  height: 25vh;
+  width: $lateral-pano-width;
+  background-color: $dark-theme-pano-color;
+  padding: 0px 10px;
+  color: $dark-theme-secondary-color;
+
+  a {
     color: $dark-theme-secondary-color;
 
-    a {
-        color: $dark-theme-secondary-color;
-
-        &:hover {
-            text-decoration: none;
-        }
+    &:hover {
+      text-decoration: none;
     }
+  }
 
-    @media (max-width: $md-tablet-query) {
-        width: 100vh;
-        margin-bottom: 25px;
-        padding-right: 0px;
-    }
+  @media (max-width: $md-tablet-query) {
+    width: 100vh;
+    margin-bottom: 25px;
+    padding-right: 0px;
+  }
 }
 
 .pano--lateral__bottom-list {
-    position: absolute;
-    bottom: 0px;
+  position: absolute;
+  bottom: 0px;
 }
 
 .terminal--section {
-    background-color: $dark-theme-terminal-background;
-    position: relative;
-    overflow: hidden;
-    float: left;
-    margin-left: 50px;
-    width: 100vh;
-    height: 85vh;
-    padding-left: 10px;
-    font-size: $terminal-font-size;
+  background-color: $dark-theme-terminal-background;
+  position: relative;
+  overflow: hidden;
+  float: left;
+  margin-left: 50px;
+  width: 100vh;
+  height: 85vh;
+  padding-left: 10px;
+  font-size: $terminal-font-size;
 
-    @media (max-width: $md-tablet-query) {
-        width: 100vh;
-        margin-left: 0px;
-    }
+  @media (max-width: $md-tablet-query) {
+    width: 100vh;
+    margin-left: 0px;
+  }
 
 }
 
 .clock {
-    position: relative;
-    float: left;
-    top: 63px;
+  position: relative;
+  float: left;
+  top: 63px;
 }
 
 .terminal__container {
-    padding: 10px 5px 0px 5px;
+  padding: 10px 5px 0px 5px;
 
-    a {
-        color: $link-light-blue;
-    }
+  a {
+    color: $link-light-blue;
+  }
 }
 
 .terminal-box {
-    width: 100%;
-    float: left;
+  width: 100%;
+  float: left;
 }
 
 .terminal-box::before {
-    position: relative;
-    float: left;
-    left: 0px;
-    padding-top: 2px;
-    content: '[sergiouve.github.io] $ ';
-    color: #00FF00;
+  position: relative;
+  float: left;
+  left: 0px;
+  padding-top: 2px;
+  content: '[sergiouve.github.io] $ ';
+  color: #00FF00;
 }
 
 .terminal-input {
-    display: block;
-    box-sizing: border-box;
-    border-width: 0px;
-    overflow: visible;
-    float: left;
-    padding-left: 5px;
-    background-color: transparent;
-    color: #00FF00;
-    font-size: $terminal-font-size;
+  display: block;
+  box-sizing: border-box;
+  border-width: 0px;
+  overflow: visible;
+  float: left;
+  padding-left: 5px;
+  background-color: transparent;
+  color: #00FF00;
+  font-size: $terminal-font-size;
 }
 
 .output {
-    color: white;
-    width: 100%;
-    float: left;
-    padding: 0px 8px;
+  color: white;
+  width: 100%;
+  float: left;
+  padding: 0px 8px;
 }
 
 .help--section {
-    position: absolute;
-    display: none;
-    height: 100%;
-    width: 100%;
-    z-index: 99;
-    background-color: rgba($dark-theme-main-color, 0.8);
+  position: absolute;
+  display: none;
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+  background-color: rgba($dark-theme-main-color, 0.8);
 }
 
 .help-content {
-    position: relative;
-    width: 100%;
-    height: 100%;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .help-container {
-    position: absolute;
-    top: -800px;
-    left: 0px;
-    right: 0px;
-    margin: auto;
-    width: 600px;
-    padding: 20px;
-    background-color: $dark-theme-pano-color;
+  position: absolute;
+  top: -800px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  width: 600px;
+  padding: 20px;
+  background-color: $dark-theme-pano-color;
 
-    h3 {
-        margin-top: 0px;
-    }
+  h3 {
+    margin-top: 0px;
+  }
 }
