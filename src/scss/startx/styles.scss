@@ -4,6 +4,7 @@
   position: absolute;
   top: 5px;
   left: 10px;
+  font-size: 10px;
 }
 
 .section__container {
@@ -16,3 +17,9 @@
     opacity: 1;
   }
 }
+
+.titles__container {
+  margin-bottom: 40px;
+}
+
+.projects-section__list { padding-top: 60px; }

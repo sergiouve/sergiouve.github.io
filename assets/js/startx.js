@@ -50,7 +50,6 @@ $(document).ready(function() {
       data: 'type=' + repos_type + '&sort=' + sort + '&direction=' + direction,
       headers: { 'Accept': 'application/vnd.github.v3+json' },
       success: function(response) {
-        console.log(response);
         populateProjectsSection(response);
       },
       error: function(response) {
@@ -63,6 +62,8 @@ $(document).ready(function() {
     Object.keys(reposInfo).map(function(key, index) {
       printRepoInfo(reposInfo[key]);
     });
+
+    equalHeightByRows('.js-project');
   }
 
   function emptyProjectsSection() {
@@ -76,13 +77,36 @@ $(document).ready(function() {
   }
 
   function printRepoInfo(repoInfo) {
-    var $sections = $('.js-section');
-    var $projectsSection = $sections.filter(function() {
-      return $(this).data('section') == 'projects';
-    });
+    var $projectsContainer = $('.js-projects-container');
     var $projectDiv = $('<div class="project-box js-project"><h5 class="project-box__title">' + repoInfo.name + '</h5><p>' + repoInfo.description + '</p></div>');
 
-    $projectsSection.append($projectDiv);
+    $projectsContainer.append($projectDiv);
+  }
+
+  function equalHeightByRows(target) {
+    var $elements = $(target);
+    var max_height = 0;
+    var current_offset = 0;
+    var currentRow = [];
+
+    $elements.each(function() {
+      var $this = $(this);
+      var height = $this.height();
+      var offset = $this.offset().top;
+
+      currentRow.push($this);
+
+      if (current_offset != offset) {
+        current_offset = offset;
+        max_height = 0;
+      }
+
+      if (height > max_height) {
+        max_height = height;
+      }
+
+      // $this.css('height', max_height);
+    });
   }
 
   initMenuButtons();

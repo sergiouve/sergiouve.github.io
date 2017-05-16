@@ -3,8 +3,13 @@
   // font-family: '';
 
   &--main {
-    font-size: 120px;
+    margin: 0;
+    font-size: 90px;
     font-weight: 700;
-    letter-spacing: 10px;
+    letter-spacing: 3px;
   }
+}
+
+.subtitle {
+  margin: 0;
 }
