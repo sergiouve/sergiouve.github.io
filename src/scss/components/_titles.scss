@@ -1,0 +1,14 @@
+.title {
+    &--main {
+        margin: 0;
+        font-size: 90px;
+        font-weight: 700;
+        letter-spacing: 3px;
+    }
+
+    &--white { color: $white !important; }
+}
+
+.subtitle {
+    margin: 0;
+}

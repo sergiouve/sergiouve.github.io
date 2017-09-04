@@ -1,0 +1,16 @@
+.button {
+    background-color: transparent;
+    color: lime;
+    border-radius: 0;
+    border: 1px solid lime;
+    transition: all .33s ease;
+    padding: 10px 15px;
+    min-width: 100px;
+
+    &:hover,
+    &.active {
+        border-color: lime;
+        color: black;
+        background-color: lime;
+    }
+}

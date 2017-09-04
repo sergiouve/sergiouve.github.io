@@ -1,41 +1,4 @@
 
-/* Media queries variables */
-
-$screen-md: 1200px;
-$screen-xs: 768px;
-
-/* Color variables */
-
-$dark-theme-main-color: #000;
-$dark-theme-secondary-color: #00FF00;
-$dark-theme-tertiary-color: #FFF;
-$dark-theme-pano-color: #111;
-$dark-theme-terminal-background: #222;
-
-$light-theme-main-color: #FFF;
-$light-theme-secondary-color: #000;
-
-$link-light-blue: #2ECCFA;
-
-/* Font variables */
-
-$main-font-size: 13px;
-$main-font-family: 'Source Code Pro';
-$terminal-font-size: 12px;
-
-/* Grid variables */
-
-$lateral-pano-width: 240px;
-
-/* Temp font-face */
-
-@font-face {
-  font-family: 'Source Code Pro';
-  src: url('../fonts/SourceCodePro-Regular.ttf');
-}
-
-/* Common styles */
-
 html, body {
   margin: 0;
   padding: 0;

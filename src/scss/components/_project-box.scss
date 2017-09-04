@@ -1,0 +1,16 @@
+.project-box {
+  border: 1px lime solid;
+  padding: 10px 20px;
+  margin: 0px 5px 5px 0px;
+  width: 30%;
+  height: 100px;
+  float: left;
+
+  &:hover {
+
+  }
+
+  .project-box__title {
+    font-weight: 600;
+  }
+}

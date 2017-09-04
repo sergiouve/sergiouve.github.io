@@ -1,99 +1,90 @@
 $(document).ready(function() {
 
-    function startShowPageAnimation() {
-        var $page = $('#page');
+  function initMenuButtons() {
+    var $buttons = $('.js-section-button');
 
-        $page.animate({
-            top: '0px',
-            opacity: '1'
-        }, 800);
-    }
+    $buttons.on('click', function() {
+      $this = $(this);
 
-    function initMenuButtons() {
-        var $buttons = $('.js-menu-button');
-        $buttons.on('click', function() {
-            $this = $(this);
-            toggleSection($this);
+      if ($this.hasClass('active')) return;
 
-            if ($this.data('section') == 'projects') {
-                getMyRepos();
-            } else {
-                emptyProjectsSection();
-            }
-        });
-    }
+      toggleSection($this);
 
-    function toggleSection($button) {
-        var aimed_section = $button.data('section');
-        var $sections = $('.js-section');
-        var $buttons = $('.js-menu-button');
+      if ($this.data('section') == 'projects') {
+        getMyRepos();
+      } else {
+        emptyProjectsSection();
+      }
+    });
+  }
 
-        $buttons.removeClass('active');
-        $button.addClass('active');
+  function toggleSection($button) {
+    var aimed_section = $button.data('section');
+    var $sections = $('.js-section');
+    var $buttons = $('.js-section-button');
 
-        $sections.each(function() {
-            var $this = $(this);
-            var section = $this.data('section');
+    $buttons.removeClass('active');
+    $button.addClass('active');
 
-            if (section == aimed_section) {
-                $this.addClass('active');
-            } else {
-                $this.removeClass('active');
-            }
-        });
-    }
+    $sections.each(function() {
+      var $this = $(this);
+      var section = $this.data('section');
 
-    function getMyRepos() {
-        var endpoint = 'https://api.github.com/users/sergiouve/repos';
-        var repos_type = 'owner';
-        var sort = 'pushed';
-        var direction = 'desc';
+      if (section == aimed_section) {
+        $this.addClass('active');
+      } else {
+        $this.removeClass('active');
+      }
+    });
+  }
 
-        $.ajax({
-            url: endpoint,
-            method: 'GET',
-            data: 'type=' + repos_type + '&sort=' + sort + '&direction=' + direction,
-            headers: { 'Accept': 'application/vnd.github.v3+json' },
-            success: function(response) {
-                populateProjectsSection(response);
-            },
-            error: function(response) {
-                console.log('fire, FIRE!');
-            }
-        });
-    }
+  function getMyRepos() {
+    var endpoint = 'https://api.github.com/users/sergiouve/repos';
+    var repos_type = 'owner';
+    var sort = 'pushed';
+    var direction = 'desc';
 
-    function populateProjectsSection(reposInfo) {
-        Object.keys(reposInfo).map(function(key, index) {
-            printRepoInfo(reposInfo[key]);
-        });
-    }
+    $.ajax({
+      url: endpoint,
+      method: 'GET',
+      data: 'type=' + repos_type + '&sort=' + sort + '&direction=' + direction,
+      headers: { 'Accept': 'application/vnd.github.v3+json' },
+      success: function(response) {
+        console.log(response);
+        populateProjectsSection(response);
+      },
+      error: function(response) {
+        console.log('fire, FIRE!');
+      }
+    });
+  }
 
-    function emptyProjectsSection() {
-        var $sections = $('.js-section');
-        var $projectsSection = $sections.filter(function() {
-            return $(this).data('section') == 'projects';
-        });
-        var $projectElements = $projectsSection.find('.project');
-        $projectElements.remove();
-    }
+  function populateProjectsSection(reposInfo) {
+    Object.keys(reposInfo).map(function(key, index) {
+      printRepoInfo(reposInfo[key]);
+    });
+  }
 
-    function printRepoInfo(repoInfo) {
-        var $sections = $('.js-section');
-        var $projectsSection = $sections.filter(function() {
-            return $(this).data('section') == 'projects';
-        });
+  function emptyProjectsSection() {
+    var $sections = $('.js-section');
+    var $projectsSection = $sections.filter(function() {
+      return $(this).data('section') == 'projects';
+    });
+    var $projectElements = $projectsSection.find('.js-project');
 
-        // console.log(repoInfo);
+    $projectElements.remove();
+  }
 
-        var $projectDiv = $('<div class="project"><h5>' + repoInfo.name + '</h5><p>' + repoInfo.description + '</p></div>');
-        // TODO
-        // $projectDiv.css('display', 'none');
-        // $projectDiv.slideToggle(500);
-        $projectsSection.append($projectDiv);
-    }
+  function printRepoInfo(repoInfo) {
+    var $sections = $('.js-section');
+    var $projectsSection = $sections.filter(function() {
+      return $(this).data('section') == 'projects';
+    });
+    var $projectDiv = $('<div class="project-box js-project"><h5 class="project-box__title">' + repoInfo.name + '</h5><p>' + repoInfo.description + '</p></div>');
 
-    startShowPageAnimation();
-    initMenuButtons();
+    $projectsSection.append($projectDiv);
+  }
+
+  initMenuButtons();
 
 });

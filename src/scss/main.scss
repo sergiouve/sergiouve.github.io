@@ -1,2 +1,16 @@
-@import "reset.scss";
-@import "styles.scss";
+// MAIN.SCSS
+
+// COMMON
+@import "common/reset";
+@import "common/variables";
+@import "common/helpers";
+
+// COMPONETS
+@import "components/buttons";
+@import "components/titles";
+@import "components/project-box";
+@import "components/hr";
+
+// PAGES
+@import "pages/terminal";
+@import "pages/startx";

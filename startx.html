@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,77 +13,56 @@
     <title>[sergiouve]</title>
 
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/startx.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  </head>
 
-</head>
-
-<body>
+  <body>
 
     <a href="/" class="back-link"> << back_to_bash</a>
 
     <div id="page" class="container">
 
-        <div class="row container--title">
+      <div class="row">
 
-            <div class="col-xs-12 text-center">
-                <h1>sergiouve.io</h1>
-            </div>
+        <div class="col-xs-12 titles__container">
 
-        </div>
+          <h1 class="title title--main pt70">sergio<span class="title--white">uve</span></h1>
+          <h3 class="subtitle">This is what I do</h3>
 
-        <div class="row container--subtitle">
-
-            <div class="col-xs-12 text-center">
-                This is what I do.
-            </div>
+          <hr class="hr"/>
 
         </div>
 
-        <div class="row container--buttons">
-
-            <div class="col-xs-12">
-
-                <div class="wrapper--buttons">
-                    <button class="button-option active js-menu-button" data-section="about">About</button>
-                    <button class="button-option js-menu-button" data-section="projects">Projects</button>
-                    <button class="button-option js-menu-button" data-section="contact">Contact</button>
-                </div>
-
-            </div>
-
+        <div class="col-xs-12 buttons__container">
+          <button class="button js-section-button active" data-section="about">About</button>
+          <button class="button js-section-button" data-section="projects">Projects</button>
+          <button class="button js-section-button" data-section="contact">Contact</button>
         </div>
 
-        <div class="row container--sections">
+      </div>
 
-            <div class="col-xs-12">
+      <div class="row section-content">
+        <section class="col-xs-12 section__container about-section js-section active" data-section="about">
+          <h1>About</h1>
 
-                <section class="container--section about-section js-section active" data-section="about">
-                    <h2>About</h2>
-                    <p>I do things with code,</p>
-                    <p>Sometimes they're good and sometimes they're not.</p>
-                </section>
+          <p>Hi,</p>
+          <p>I write code, sometimes I do cool things. Anyway, feel free to look around.</p>
+        </section>
 
-                <section class="container--section projects-section js-section" data-section="projects">
-                    <h2>Projects</h2>
-                </section>
+        <section class="col-xs-12 section__container projects-section js-section" data-section="projects">
+          <h1>Projects</h1>
 
-                <section class="container--section contact-section js-section" data-section="contact">
-                    <h2>Contact</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </section>
+          <div class="projects-section__list js-projects-container"></div>
+        </section>
 
-            </div>
+        <section class="col-xs-12 section__container contact-section js-section" data-section="contact">
+          <h1>Contact</h1>
+        </section>
 
-        </div>
+      </div>
 
     </div>
 
@@ -91,6 +70,6 @@
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/startx.js"></script>
 
-</body>
+  </body>
 
 </html>
