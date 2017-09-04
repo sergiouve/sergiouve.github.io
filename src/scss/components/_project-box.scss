@@ -1,10 +1,9 @@
 .project-box {
-  border: 1px $grey solid;
-  // box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, .3);
+  border: 1px lime solid;
   padding: 10px 20px;
   margin: 0px 5px 5px 0px;
   width: 30%;
-  height: 400px;
+  height: 100px;
   float: left;
 
   &:hover {

@@ -1,0 +1,39 @@
+// Media queries breakpoints
+
+$screen-xs-min: 0 !default;
+$screen-sm-max: 767px !default;
+$screen-sm-min: 768px !default;
+$screen-md-max: 991px !default;
+$screen-md-min: 992px !default;
+$screen-lg-max: 1199px !default;
+$screen-lg-min: 1200px !default;
+
+$md-tablet-query: 880px;
+
+// Colors
+$white:      #FFFFFF;
+$black:      #000000;
+$grey:       #D0D0D0;
+$grey-dark:  #111111;
+
+$aqua:       #00CEAF;
+
+$dark-theme-main-color: #000;
+$dark-theme-secondary-color: #00FF00;
+$dark-theme-tertiary-color: #FFF;
+$dark-theme-pano-color: #111;
+$dark-theme-terminal-background: #222;
+
+$light-theme-main-color: #FFF;
+$light-theme-secondary-color: #000;
+
+$link-light-blue: #2ECCFA;
+
+$main-font-size: 13px;
+$main-font-family: 'Source Code Pro';
+$terminal-font-size: 12px;
+
+/* Grid variables */
+
+$lateral-pano-width: 240px;
+
