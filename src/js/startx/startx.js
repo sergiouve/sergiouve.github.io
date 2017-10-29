@@ -44,6 +44,7 @@ $(document).ready(function() {
     var sort = 'pushed';
     var direction = 'desc';
 
+    // TODO: replace this with axios
     $.ajax({
       url: endpoint,
       method: 'GET',
@@ -80,7 +81,11 @@ $(document).ready(function() {
     var $projectsSection = $sections.filter(function() {
       return $(this).data('section') == 'projects';
     });
-    var $projectDiv = $('<div class="project-box js-project"><h5 class="project-box__title">' + repoInfo.name + '</h5><p>' + repoInfo.description + '</p></div>');
+    var url = '';
+
+    repoInfo.homepage === null ? url = repoInfo.html_url : url = repoInfo.homepage;
+    // TODO: replace this for handlebars
+    var $projectDiv = $('<a class="link--no-style" href="' + url + '" target="_blank" rel="noopener"><div class="project-box js-project"><h5 class="project-box__title">' + repoInfo.name + '</h5><p>' + repoInfo.description + '</p></div></a>');
 
     $projectsSection.append($projectDiv);
   }

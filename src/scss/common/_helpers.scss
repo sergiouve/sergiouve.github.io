@@ -72,3 +72,10 @@
   display: inherit !important;
   @media (min-width: $screen-sm-min) { display: none !important; }
 }
+
+.link--no-style {
+    color: $dark-theme-secondary-color;
+    text-decoration: none;
+
+    &:visited { color: $dark-theme-secondary-color; }
+}
