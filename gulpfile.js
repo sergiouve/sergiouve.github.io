@@ -26,7 +26,7 @@ gulp.task('js', function() {
 });
 
 gulp.task('serve', shell.task([
-  'php -S localhost:3000'
+  'http-server -p 3000'
 ]));
 
 gulp.task('watch', function() {

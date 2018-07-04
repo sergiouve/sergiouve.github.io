@@ -1,10 +1,11 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 var terminal = require('./terminal.js');
 var commandsList = require('./lib/commands.json');
 
 $(document).ready(function() {
 
     var showHelpModal = function() {
+        console.log('test 2');
         var $modalSection = $('#help-modal');
         var $modalHelpBox = $modalSection.find('.js-help-container');
 
@@ -79,111 +80,112 @@ $(document).ready(function() {
 });
 
 },{"./lib/commands.json":3,"./terminal.js":6}],2:[function(require,module,exports){
-var helpers = require('./lib/helpers.js');
-var fileTree = require('./lib/tree.json');
-var commandsList = require('./lib/commands.json');
-var currentPath = ['/'];
+const helpers = require('./lib/helpers.js');
+const fileTree = require('./lib/tree.json');
+const commandsList = require('./lib/commands.json');
+const currentPath = ['/'];
 
-var commands = {
+const commands = {
+    fileTree: fileTree,
+    currentPath: currentPath,
+    currentDir: fileTree['/'],
+    commandsList: commandsList,
+    helpers: helpers,
 
-  fileTree: fileTree,
-  currentPath: currentPath,
-  currentDir: fileTree['/'],
-  commandsList: commandsList,
-  helpers: helpers,
+    listDirectory: function(parameters) {
 
-  listDirectory: function(parameters) {
+        if (parameters.length > 0) {
+            var directory_path = parameters[0];
+            var directorList = directory_path.split('/');
+            var tempDir = this.currentDir;
+            var directory = '';
 
-    if (parameters.length > 0) {
-      var directory_path = parameters[0];
-      var directorList = directory_path.split('/');
-      var tempDir = this.currentDir;
-      var directory = '';
+            while (directorList.length > 0) {
+                tempDir = tempDir[directorList[0]];
+                directorList.splice(0, 1);
+            }
 
-      while (directorList.length > 0) {
-        tempDir = tempDir[directorList[0]];
-        directorList.splice(0, 1);
-      }
+            if (typeof directory != 'object') {
+                return directory_path + ' is not a folder';
+            }
 
-      if (typeof directory != 'object') {
-        return directory_path + ' is not a folder';
-      }
+            directory = Object.keys(tempDir);
+            delete tempDir;
 
-      directory = Object.keys(tempDir);
-      delete tempDir;
+        } else {
+            directory = Object.keys(this.currentDir);
+        }
 
-    } else {
-      directory = Object.keys(this.currentDir);
+        directory = directory.toString();
+        directory = directory.replace(/,/g, '&nbsp;&nbsp;');
+
+        return directory;
+    },
+
+    changeDirectory: function(parameters) {
+        var directoryPath = parameters[0].split('/');
+        var directory = directoryPath[0];
+
+        // TODO
+        if (directory == '..') {
+            var parent = this.helpers.getParentFolder(this.fileTree, this.currentPath);
+            this.currentPath = this.currentPath.pop();
+            console.log(parent);
+            return;
+        }
+
+        if (directory == '.') {
+            return;
+        }
+
+        if (typeof this.currentDir[directory] != 'object') {
+            return directory + ' is not a folder';
+        }
+
+        this.currentDir = this.currentDir[directory];
+        this.currentPath = this.helpers.updateCurrentPath(this.currentPath, directory);
+        directoryPath.splice(0, 1);
+
+        if (directoryPath.length > 0) {
+            this.changeDirectory([directoryPath.join('/')]);
+        }
+
+        return '';
+    },
+
+    printWorkingDirectory: function() {
+        return this.helpers.formatCurrentPathString(currentPath);
+    },
+
+    concatenate: function(parameters) {
+        var file = parameters[0];
+
+        if (typeof this.currentDir[file] != 'string') {
+            return file + ' is not a file';
+        }
+
+        return this.currentDir[file];
+    },
+
+    help: function() {
+        var output = 'commands available:<br>';
+
+        for (command in commandsList) {
+            output += command + '<br>';
+        }
+
+        return output;
+    },
+
+    startx: function() {
+        window.location.href = window.location.href + 'startx.html';
+
+        return 'starting X server...';
+    },
+
+    clear: function() {
+
     }
-
-    directory = directory.toString();
-    directory = directory.replace(/,/g, '&nbsp;&nbsp;');
-
-    return directory;
-  },
-
-  changeDirectory: function(parameters) {
-    var directoryPath = parameters[0].split('/');
-    var directory = directoryPath[0];
-
-    // TODO
-    if (directory == '..') {
-      var parent = this.helpers.getParentFolder(this.fileTree, this.currentPath);
-      this.currentPath = this.currentPath.pop();
-      console.log(parent);
-      return;
-    }
-
-    if (directory == '.') {
-      return;
-    }
-
-    if (typeof this.currentDir[directory] != 'object') {
-      return directory + ' is not a folder';
-    }
-
-    this.currentDir = this.currentDir[directory];
-    this.currentPath = this.helpers.updateCurrentPath(this.currentPath, directory);
-    directoryPath.splice(0, 1);
-
-    if (directoryPath.length > 0) {
-      this.changeDirectory([directoryPath.join('/')]);
-    }
-
-    return '';
-  },
-
-  printWorkingDirectory: function() {
-    return this.helpers.formatCurrentPathString(currentPath);
-  },
-
-  concatenate: function(parameters) {
-    var file = parameters[0];
-
-    if (typeof this.currentDir[file] != 'string') {
-      return file + ' is not a file';
-    }
-
-    return this.currentDir[file];
-  },
-
-  help: function() {
-    var output = 'commands available:<br>';
-
-    for (command in commandsList) {
-      output += command + '<br>';
-    }
-
-    return output;
-  },
-
-  startx: function() {
-    window.location.href = window.location.href + 'startx.html';
-  },
-
-  clear: function() {
-
-  }
 };
 
 module.exports = commands;
@@ -265,9 +267,9 @@ module.exports={
 }
 
 },{}],6:[function(require,module,exports){
-var commands = require('./commands');
+const commands = require('./commands');
 
-var terminal = {
+const terminal = {
 
     commadHistory: [],
     commadHistoryPointer: 0,

@@ -1,6 +1,6 @@
-var commands = require('./commands');
+const commands = require('./commands');
 
-var terminal = {
+const terminal = {
 
     commadHistory: [],
     commadHistoryPointer: 0,

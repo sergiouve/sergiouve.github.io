@@ -4,6 +4,7 @@ var commandsList = require('./lib/commands.json');
 $(document).ready(function() {
 
     var showHelpModal = function() {
+        console.log('test 2');
         var $modalSection = $('#help-modal');
         var $modalHelpBox = $modalSection.find('.js-help-container');
 
