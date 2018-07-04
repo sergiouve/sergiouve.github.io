@@ -319,17 +319,24 @@ const terminal = {
     },
 
     initTerminalListener: function() {
+        var $terminalWindow = $('.js-terminal-window');
         var $terminalBox = this.$app.find('.js-terminal-box:last-child');
         var $terminal = $terminalBox.find('input');
+        var self = this;
 
         $terminal.off();
 
-        $terminal.on('keyup', function(e) {
-            var pressed_key = e.keyCode || e.which;
+        $terminal.on('keyup', function(event) {
+            var pressed_key = event.keyCode || event.which;
             var input = $terminal.val();
 
             terminal.terminalHandleInput(input, pressed_key);
         });
+
+        $terminalWindow.on('click', function(event) {
+            self.focusTerminal();
+        });
+
         this.focusTerminal();
     },
 
